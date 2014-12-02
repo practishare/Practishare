@@ -1,0 +1,13 @@
+{% if practices %}
+    <ul>
+    {% for practice in practices %}
+        <li>
+            <a href="{% url 'practices:detail' pk=practice.id %}">{{ practice.title }}</a>
+            <a href="{% url 'practices:delete' pk=practice.id %}">Delete</a>
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No practices are available.</p>
+{% endif %}
+<a href="{% url 'practices:new' %}">Add new</a>
