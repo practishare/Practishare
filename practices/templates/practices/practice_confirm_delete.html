@@ -1,5 +1,12 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block pagetitle %}{% trans "Delete" %}{% endblock %}
+{% block contenttitle %}{% trans "Delete" %}{% endblock %}
+{% block content %}
 <form action="" method="post">
     {% csrf_token %}
     <p>Are you sure you want to delete "{{ object }}"?</p>
     <input type="submit" value="Confirm" />
 </form>
+{% endblock %}

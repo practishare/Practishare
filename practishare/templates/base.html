@@ -1,0 +1,38 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/practishare.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+        <title>{% block pagetitle %}{% endblock %} - Practishare</title>
+    </head>
+    <body>
+        <div id="header">
+            <img id="logo" class="img-responsive" src="/logo.png" />
+            <h1 id="sitename" class="text-center text-uppercase blue">Practishare</h2>
+            <div id="headermenu" class="container text-center gray">
+                <div class="col-md-4">What for</div>
+                <div class="col-md-4">Subjects</div>
+                <div class="col-md-4">Log in</div>
+            </div>
+        </div>
+        <div id="headersep" class="container-fluid bgblue">
+            <div id="contenttitle" class="pull-left blue">
+                <h2>{% block contenttitle %}{% endblock %}</h2>
+            </div>
+        </div>
+        <div id="content" class="container">
+            {% block content %}
+            {% endblock %}
+        </div>
+        <div class="footer bggray blue">
+            <div class="container">
+                <div class="col-md-3 text-center">Who are we?</div>
+                <div class="col-md-3 text-center">Terms of use</div>
+                <div class="col-md-3 text-center">Support</div>
+                <div class="col-md-3 text-center">Blog</div>
+            </div>
+        </div>
+    </body>
+</html>

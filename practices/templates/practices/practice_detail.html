@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block pagetitle %}{{ practice.title }}{% endblock %}
+{% block contenttitle %}{{ practice.title }}{% endblock %}
+{% block content %}
+{{ practice.title }}
+<a href="{% url 'practices:edit' practice.id %}">Edit</a>
+{% endblock %}

@@ -1,5 +1,12 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block pagetitle %}{% trans "New good practices" %}{% endblock %}
+{% block contenttitle %}{% trans "New good practices" %}{% endblock %}
+{% block content %}
 <form action="" method="post">
     {% csrf_token %}
     {{ form.as_p }}
     <input type="submit" value="Submit" />
 </form>
+{% endblock %}

@@ -1,6 +1,12 @@
-{% if practices %}
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block pagetitle %}{% trans "Good practices" %}{% endblock %}
+{% block contenttitle %}{% trans "Good practices" %}{% endblock %}
+{% block content %}
+{% if practice_list %}
     <ul>
-    {% for practice in practices %}
+    {% for practice in practice_list %}
         <li>
             <a href="{% url 'practices:detail' pk=practice.id %}">{{ practice.title }}</a>
             <a href="{% url 'practices:delete' pk=practice.id %}">Delete</a>
@@ -11,3 +17,4 @@
     <p>No practices are available.</p>
 {% endif %}
 <a href="{% url 'practices:new' %}">Add new</a>
+{% endblock %}

@@ -6,12 +6,9 @@ from practices.models import Practice
 
 class IndexView(generic.ListView):
     model = Practice
-    template_name = 'practices/index.html'
-    context_object_name = 'practices'
 
 class DetailView(generic.DetailView):
     model = Practice
-    template_name = 'practices/detail.html'
 
 class UpdateView(generic.UpdateView):
     model = Practice
