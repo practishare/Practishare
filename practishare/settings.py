@@ -9,16 +9,6 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 """
 from settings_specific import *
 
-# See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'gosfv_az19*7r3mg!17g&hu_dffo#r=ad_mdeodj&=_vv(o3vb'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-TEMPLATE_DEBUG = True
-
 # Application definition
 
 INSTALLED_APPS = (
