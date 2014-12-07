@@ -4,6 +4,42 @@
 {% block pagetitle %}{{ practice.title }}{% endblock %}
 {% block contenttitle %}{{ practice.title }}{% endblock %}
 {% block content %}
-{{ practice.title }}
-<a href="{% url 'practices:edit' practice.id %}">Edit</a>
+<div class="pull-right">
+    <div><a href="{% url 'practices:edit' practice.id %}">{% trans "Edit" %}</a></div>
+    <div><a href="">{% trans "Duplicate" %}</a></div>
+    <div>{% trans "Created on"%} {{ practice.created }}</div>
+    <div>{% trans "Updated on"%} {{ practice.updated }}</div>
+</div>
+
+<div class="center-block practice">
+    <div class="bgblue white practice-header">
+        <div class="pull-left">{{ practice.author }}</div>
+        <div class="text-center"><b>{{ practice.title }}</b></div>
+    </div>
+    <div>
+        <div class="col-md-6 text-center practice-axis">{{ practice.axis1 }}</div>
+        <div class="col-md-6 text-center practice-axis">{{ practice.axis2 }}</div>
+    </div>
+    <div class="clearfix"></div>
+    
+    <div class="practice-content">
+        <p>
+            <span class="blue">{% trans "Field" %} 1:</span>
+            {{ practice.field1}}
+        </p>
+        <p>
+            <span class="blue">{% trans "Field" %} 2:</span>
+            {{ practice.field2}}
+        </p>
+        <p>
+            <span class="blue">{% trans "Field" %} 3:</span>
+            {{ practice.field3}}
+        </p>
+        <p>
+            <span class="blue">{% trans "Field" %} 4:</span>
+            {{ practice.field4}}
+        </p>
+    </div>
+    <div class="clearfix"></div>
+</div>
 {% endblock %}

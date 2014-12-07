@@ -1,20 +1,23 @@
 .gray{
-    color: #B2B2B2
+    color: #B2B2B2;
 }
 .blue {
     color: #356686;
 }
 .black {
-    color: #3C3C3B
+    color: #3C3C3B;
+}
+.white {
+    color: #FFF;
 }
 .bggray{
-    background-color: #B2B2B2
+    background-color: #B2B2B2;
 }
 .bgblue {
     background-color: #356686;
 }
 .bgblack {
-    background-color: #3C3C3B
+    background-color: #3C3C3B;
 }
 html {
   position: relative;
@@ -60,4 +63,21 @@ body {
     width: 100%;
     height: 60px;
     padding-top: 20px;
+}
+
+.practice {
+    border: solid 1px #356686;
+    max-width: 600px;
+    margin-bottom: 2em;
+}
+.practice-header {
+    height: 3em;
+    padding: 0.8em;
+}
+.practice-axis {
+    border: solid 2px #356686;
+    padding: .3em;
+}
+.practice-content {
+    padding: 0 1em;
 }
