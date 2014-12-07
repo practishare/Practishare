@@ -9,7 +9,7 @@
     {% for practice in practice_list %}
         <li>
             <a href="{% url 'practices:detail' pk=practice.id %}">{{ practice.title }}</a>
-            <a href="{% url 'practices:delete' pk=practice.id %}">Delete</a>
+            <a href="{% url 'practices:delete' pk=practice.id %}">{% trans "Delete" %}</a>
         </li>
     {% endfor %}
     </ul>

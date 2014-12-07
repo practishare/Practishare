@@ -9,17 +9,6 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 """
 from settings_specific import *
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'gosfv_az19*7r3mg!17g&hu_dffo#r=ad_mdeodj&=_vv(o3vb'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-TEMPLATE_DEBUG = True
-
 ALLOWED_HOSTS = []
 
 # Application definition
@@ -56,10 +45,7 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.6/howto/static-files/
-
-STATIC_URL = '/static/'
-
 TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'practishare/templates')]
 STATICFILES_DIRS = (os.path.join(BASE_DIR, "practishare/static"),)
+
+LOGIN_REDIRECT_URL = '/'
