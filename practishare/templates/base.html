@@ -1,4 +1,5 @@
 {% load staticfiles %}
+{% load i18n %}
 <!DOCTYPE html>
 <html>
     <head>
@@ -9,17 +10,21 @@
     </head>
     <body>
         <div id="header">
-            <img id="logo" class="img-responsive" src="/logo.png" />
-            <h1 id="sitename" class="text-center text-uppercase blue">Practishare</h2>
+            <a href="/">
+                <img id="logo" class="img-responsive" src="{% static 'logo.png' %}" />
+                <img alt="Practishare" id="sitename" class="center-block" src="{% static 'practishare.png' %}" />
+            </a>
             <div id="headermenu" class="container text-center gray">
                 <div class="col-md-4">What for</div>
-                <div class="col-md-4">Subjects</div>
-                <div class="col-md-4"><a href="{% url 'accounts:login' %}">Log in</a></div>
+                <div class="col-md-4"><a href="{% url 'practices:subject_index' %}">{% trans "Subjects" %}</a></div>
+                <div class="col-md-4"><a href="{% url 'accounts:login' %}">{% trans "Log in" %}</a></div>
             </div>
         </div>
         <div id="headersep" class="container-fluid bgblue">
-            <div id="contenttitle" class="pull-left blue">
-                <h2>{% block contenttitle %}{% endblock %}</h2>
+            <div class="container">
+                <div id="contenttitle" class="pull-left blue">
+                    <h2>{% block contenttitle %}{% endblock %}</h2>
+                </div>
             </div>
         </div>
         <div id="content" class="container">

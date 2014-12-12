@@ -1,12 +1,54 @@
 {% extends 'base.html' %}
 {% load i18n %}
 
-{% block pagetitle %}{% trans "New good practices" %}{% endblock %}
-{% block contenttitle %}{% trans "New good practices" %}{% endblock %}
+{% block pagetitle %}{% trans "New good practice" %}{% endblock %}
+{% block contenttitle %}{% trans "New good practice" %}{% endblock %}
 {% block content %}
+
+{{ form.non_field_errors }}
 <form action="" method="post">
     {% csrf_token %}
-    {{ form.as_p }}
+    <div class="fieldWrapper">
+        {{ form.subject.errors }}
+        <label for="{{ form.title.id_for_label }}">Titre:</label>
+        {{ form.title }}
+    </div>
+    <div class="fieldWrapper">
+        {{ form.subject.errors }}
+        <label for="{{ form.subject.id_for_label }}">Subject:</label>
+        {{ form.subject }}
+    </div>
+    <div class="fieldWrapper">
+        {{ form.axis1.errors }}
+        <label for="{{ form.axis1.id_for_label }}">{{subject.axis_set.all.0.title}}:</label>
+        {{ form.axis1 }}
+    </div>
+    <div class="fieldWrapper">
+        {{ form.axis2.errors }}
+        <label for="{{ form.axis2.id_for_label }}">{{subject.axis_set.all.1.title}}:</label>
+        {{ form.axis2 }}
+    </div>
+
+    <div class="fieldWrapper">
+        {{ form.field1.errors }}
+        <label for="{{ form.field1.id_for_label }}">{{subject.field1}}:</label>
+        {{ form.field1 }}
+    </div>
+    <div class="fieldWrapper">
+        {{ form.field2.errors }}
+        <label for="{{ form.field2.id_for_label }}">{{subject.field2}}:</label>
+        {{ form.field2 }}
+    </div>
+    <div class="fieldWrapper">
+        {{ form.field3.errors }}
+        <label for="{{ form.field3.id_for_label }}">{{subject.field3}}:</label>
+        {{ form.field3 }}
+    </div>
+    <div class="fieldWrapper">
+        {{ form.field4.errors }}
+        <label for="{{ form.field4.id_for_label }}">{{subject.field4}}:</label>
+        {{ form.field4 }}
+    </div>
     <input type="submit" value="{% trans 'Submit' %}" />
 </form>
 {% endblock %}

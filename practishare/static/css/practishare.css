@@ -11,7 +11,7 @@
     color: #FFF;
 }
 .bggray{
-    background-color: #B2B2B2;
+    background-color: #EEEDED;
 }
 .bgblue {
     background-color: #356686;
@@ -31,14 +31,15 @@ body {
 }
 #logo {
     float: left;
+    margin: 2em;
 }
 #sitename {
-    font-size: 200%;
-    padding: 1em;
+    padding: 2em;
 }
 #headermenu {
     border-top: solid 1px #356686;
     padding: .5em;
+    margin-left: 150px;
 }
 #headersep {
     height: 20px;

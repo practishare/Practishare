@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block pagetitle %}{% trans "Subjects" %}{% endblock %}
+{% block contenttitle %}{% trans "Subjects" %}{% endblock %}
+{% block content %}
+
+{% if subject_list %}
+    <ul>
+    {% for subject in subject_list %}
+        <li>
+            <a href="{% url 'practices:index' subject_id=subject.id %}">{{ subject.title }}</a>
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No subjects are available.</p>
+{% endif %}
+{% endblock %}

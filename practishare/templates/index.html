@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block pagetitle %}{% trans "News" %}{% endblock %}
+{% block contenttitle %}{% trans "Practishare" %}{% endblock %}
+{% block content %}
+    <h2>{% trans "News" %}</h2>
+    <a href="{% url 'practices:subject_index' %}">{% trans "Browse subjects" %}</a>
+{% endblock %}

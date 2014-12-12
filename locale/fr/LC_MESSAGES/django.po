@@ -1,0 +1,102 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 1\n"
+"Report-Msgid-Bugs-To: Sylvain\n"
+"POT-Creation-Date: 2014-12-12 21:31+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Sylvain\n"
+"Language-Team: fr\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: practices/templates/practices/practice_confirm_delete.html:4
+#: practices/templates/practices/practice_confirm_delete.html:5
+msgid "Delete"
+msgstr "Supprimer"
+
+#: practices/templates/practices/practice_confirm_delete.html:9
+#, python-format
+msgid "Are you sure you want to delete \"%(object)s\"?"
+msgstr "Etes-vous sûr de vouloir supprimer \"%(object)s\" ?"
+
+#: practices/templates/practices/practice_confirm_delete.html:10
+msgid "Confirm"
+msgstr "Confirmer"
+
+#: practices/templates/practices/practice_detail.html:8
+msgid "Edit"
+msgstr "Modifier"
+
+#: practices/templates/practices/practice_detail.html:9
+msgid "Duplicate"
+msgstr "Dupliquer"
+
+#: practices/templates/practices/practice_detail.html:10
+msgid "Created on"
+msgstr "Créée le"
+
+#: practices/templates/practices/practice_detail.html:11
+msgid "Updated on"
+msgstr "Modfiée le"
+
+#: practices/templates/practices/practice_form.html:4
+#: practices/templates/practices/practice_form.html:5
+msgid "New good practice"
+msgstr "Nouvelle bonne pratique"
+
+#: practices/templates/practices/practice_form.html:52
+msgid "Submit"
+msgstr "Enregistrer"
+
+#: practices/templates/practices/practice_list.html:4
+#: practices/templates/practices/practice_list.html:5
+msgid "Good practices"
+msgstr "Bonnes pratiques"
+
+#: practices/templates/practices/subject_list.html:4
+#: practices/templates/practices/subject_list.html:5
+#: practishare/templates/base.html:19
+msgid "Subjects"
+msgstr "Sujets"
+
+#: practishare/templates/base.html:20
+#: practishare/templates/registration/login.html:26
+msgid "Log in"
+msgstr "Se connecter"
+
+#: practishare/templates/index.html:4 practishare/templates/index.html.py:7
+msgid "News"
+msgstr "Actualités"
+
+#: practishare/templates/index.html:5
+msgid "Practishare"
+msgstr "Practishare"
+
+#: practishare/templates/index.html:8
+msgid "Browse subjects"
+msgstr "Parcourir les sujets"
+
+#: practishare/templates/registration/login.html:4
+#: practishare/templates/registration/login.html:5
+msgid "Login"
+msgstr "Se connecter"
+
+#: practishare/templates/registration/login.html:10
+msgid "Please correct the error below."
+msgstr "Merci de corriger l'erreur ci-dessous."
+
+#: practishare/templates/registration/login.html:10
+msgid "Please correct the errors below."
+msgstr "Merci de corriger les erreurs ci-dessous."
+
+#: practishare/templates/registration/register.html:11
+msgid "Create the account"
+msgstr "Créer le compte"
