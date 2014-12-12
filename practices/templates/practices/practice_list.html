@@ -17,8 +17,8 @@
             {% for axis2_group in axis2_list %}
             <td>
                 {% for practice in axis2_group.list %}
-                    <a href="{% url 'practices:detail' subject_id=subject.id pk=practice.id %}">
-                        {{ practice.title }}
+                    <a href="{% url 'practices:detail' subject_id=subject.id pk=practice.id %}" title="{{practice.title}}" alt="{{practice.title}}">
+                        {{ practice.id }}
                     </a>
                 {% endfor %}
             </td>
