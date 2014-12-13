@@ -15,7 +15,7 @@
                 <img alt="Practishare" id="sitename" class="center-block" src="{% static 'practishare.png' %}" />
             </a>
             <div id="headermenu" class="container text-center gray">
-                <div class="col-md-4">What for</div>
+                <div class="col-md-4">{% trans "What for" %}</div>
                 <div class="col-md-4"><a href="{% url 'practices:subject_index' %}">{% trans "Subjects" %}</a></div>
                 <div class="col-md-4"><a href="{% url 'accounts:login' %}">{% trans "Log in" %}</a></div>
             </div>
@@ -33,10 +33,10 @@
         </div>
         <div class="footer bggray blue">
             <div class="container">
-                <div class="col-md-3 text-center">Who are we?</div>
-                <div class="col-md-3 text-center">Terms of use</div>
-                <div class="col-md-3 text-center">Support</div>
-                <div class="col-md-3 text-center">Blog</div>
+                <div class="col-md-3 text-center">{% trans "Who are we?" %}</div>
+                <div class="col-md-3 text-center">{% trans "Terms of use" %}</div>
+                <div class="col-md-3 text-center">{% trans "Support" %}</div>
+                <div class="col-md-3 text-center">{% trans "Blog" %}</div>
             </div>
         </div>
     </body>

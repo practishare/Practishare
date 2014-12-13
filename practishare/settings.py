@@ -37,13 +37,15 @@ WSGI_APPLICATION = 'practishare.wsgi.application'
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
-TIME_ZONE = 'UTC'
+LANGUAGE_CODE = 'fr-FR'
+TIME_ZONE = 'Europe/Paris'
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
 TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'practishare/templates')]
 STATICFILES_DIRS = (os.path.join(BASE_DIR, "practishare/static"),)
+LOCALE_PATHS = (os.path.join(BASE_DIR, "locale"),)
+
 
 LOGIN_REDIRECT_URL = '/'

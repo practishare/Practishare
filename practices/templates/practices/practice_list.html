@@ -9,10 +9,15 @@
 {% regroup practice_list|dictsort:"axis1" by axis1 as axis1_list %}
 <div class="center-block practice">
     <table class="table table-striped">
+        <tr>
+            <th></th>
+            {% for column in columns %}
+            <th>{{column}}</th>
+            {% endfor %}
+        </tr>
         {% for axis1_group in axis1_list %}
         <tr>
             <th>{{axis1_group.grouper}}</th>
-            <td>
             {% regroup axis1_group.list|dictsort:"axis2" by axis2 as axis2_list %}
             {% for axis2_group in axis2_list %}
             <td>
@@ -30,5 +35,5 @@
 {% else %}
     <p>No practices are available.</p>
 {% endif %}
-<a href="{% url 'practices:new' subject_id=subject.id %}">Add new</a>
+<a href="{% url 'practices:new' subject_id=subject.id %}">{% trans "Add new" %}</a>
 {% endblock %}

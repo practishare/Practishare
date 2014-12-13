@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 1\n"
-"Report-Msgid-Bugs-To: Sylvain\n"
-"POT-Creation-Date: 2014-12-12 21:31+0000\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-12-13 00:59+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Sylvain\n"
 "Language-Team: fr\n"
@@ -61,16 +61,40 @@ msgstr "Enregistrer"
 msgid "Good practices"
 msgstr "Bonnes pratiques"
 
+#: practices/templates/practices/practice_list.html:38
+msgid "Add new"
+msgstr "Ajouter une nouvelle"
+
 #: practices/templates/practices/subject_list.html:4
 #: practices/templates/practices/subject_list.html:5
 #: practishare/templates/base.html:19
 msgid "Subjects"
 msgstr "Sujets"
 
+#: practishare/templates/base.html:18
+msgid "What for"
+msgstr "Pour quoi faire"
+
 #: practishare/templates/base.html:20
 #: practishare/templates/registration/login.html:26
 msgid "Log in"
 msgstr "Se connecter"
+
+#: practishare/templates/base.html:36
+msgid "Who are we?"
+msgstr "Qui sommes-nous ?"
+
+#: practishare/templates/base.html:37
+msgid "Terms of use"
+msgstr "Conditions d'utilisation"
+
+#: practishare/templates/base.html:38
+msgid "Support"
+msgstr "Support"
+
+#: practishare/templates/base.html:39
+msgid "Blog"
+msgstr "Blog"
 
 #: practishare/templates/index.html:4 practishare/templates/index.html.py:7
 msgid "News"

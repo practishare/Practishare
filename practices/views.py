@@ -10,16 +10,22 @@ class SubjectView(generic.base.ContextMixin):
     model = Practice
     form_class = PracticeForm
     def get_context_data(self, **kwargs):
-        ctx = super(SubjectView, self).get_context_data(**kwargs)
-        ctx['subject'] = Subject.objects.get(pk=self.kwargs['subject_id'])
-        return ctx
+        context = super(SubjectView, self).get_context_data(**kwargs)
+        context['subject'] = Subject.objects.get(pk=self.kwargs['subject_id'])
+        return context
     def get_form(self, form_class):
         return form_class(Subject.objects.get(pk=self.kwargs['subject_id']), **self.get_form_kwargs())
     def get_success_url(self):
         return reverse_lazy("practices:index", kwargs={'subject_id':self.kwargs['subject_id']})
 
 class IndexView(SubjectView, generic.ListView):
-    pass
+    def get_context_data(self, **kwargs):
+        context = super(IndexView, self).get_context_data(**kwargs)
+        axis = Subject.objects.get(pk=self.kwargs['subject_id']).axis_set.all()[1]
+        columns=[axis.value1, axis.value2, axis.value3, axis.value4]
+        columns.sort()
+        context['columns'] = columns
+        return context
 
 class DetailView(SubjectView, generic.DetailView):
     pass
