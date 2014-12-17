@@ -32,10 +32,11 @@ textarea {
 }
 #logo {
     float: left;
-    margin: 2em;
+    margin: 2em 0;
+    max-width: 30%;
 }
 #sitename {
-    padding: 2em;
+    padding: 2em 0.5em;
 }
 #headermenu {
     border-top: solid 1px #356686;
@@ -109,5 +110,10 @@ textarea {
     }
     .practice {
         clear: both;
+    }
+}
+@media screen and (max-width: 350px) {
+    #headermenu {
+        margin-left: 30%;
     }
 }
