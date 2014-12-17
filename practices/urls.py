@@ -8,6 +8,7 @@ urlpatterns = patterns('',
     url(r'^(?P<subject_id>\d+)/practice/(?P<pk>\d+)/$', views.DetailView.as_view(), name='detail'),
     url(r'^(?P<subject_id>\d+)/practice/new$', views.CreateView.as_view(), name='new'),
     url(r'^(?P<subject_id>\d+)/practice/(?P<pk>\d+)/edit$', views.UpdateView.as_view(), name='edit'),
+    url(r'^(?P<subject_id>\d+)/practice/(?P<pk>\d+)/duplicate$', views.DuplicateView.as_view(), name='duplicate'),
     url(r'^(?P<subject_id>\d+)/practice/(?P<pk>\d+)/delete$', views.DeleteView.as_view(), name='delete'),
     url(r'^(?P<subject_id>\d+)/practice/(?P<pk>\d+)/comment$', views.CommentView.as_view(), name='comment'),
 )

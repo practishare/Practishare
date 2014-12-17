@@ -36,6 +36,14 @@ class DetailView(SubjectView, generic.DetailView):
 class UpdateView(SubjectView, generic.UpdateView):
     pass
 
+class DuplicateView(generic.View):
+    def get(self, request, *args, **kwargs):
+        practice = Practice.objects.get(pk = self.kwargs['pk'])
+        practice.pk = None
+        practice.author = request.user
+        practice.save()
+        return HttpResponseRedirect(reverse_lazy("practices:detail", kwargs={'subject_id': self.kwargs['subject_id'], 'pk': practice.pk}))
+
 class CreateView(SubjectView, generic.CreateView):
     def form_valid(self, form):
         form.instance.author = self.request.user
