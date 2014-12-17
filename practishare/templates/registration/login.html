@@ -26,6 +26,10 @@
         <label>&nbsp;</label><input type="submit" value="{% trans 'Log in' %}" />
     </div>
 </form>
+<p>
+    {% trans "No account yet?" %}
+</p>
+<a href="{% url 'register' %}">{% trans "Register" %}</a>
 
 <script type="text/javascript">
 document.getElementById('id_username').focus()

@@ -18,5 +18,5 @@ urlpatterns = patterns('',
     url(r'^subject/', include("practices.urls", namespace="practices")),
     url(r'^admin/', include(admin.site.urls)),
     url('^accounts/', include('django.contrib.auth.urls', namespace="accounts")),
-    url('^register$', views.register),
+    url('^register$', views.register, name="register"),
 )
