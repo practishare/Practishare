@@ -2,7 +2,7 @@
 {% load i18n %}
 
 {% block pagetitle %}{{ practice.title }}{% endblock %}
-{% block contenttitle %}{{ practice.title }}{% endblock %}
+{% block contenttitle %}{{ subject.title }}{% endblock %}
 {% block content %}
 <div class="pull-right">
     <div><a href="{% url 'practices:edit' subject_id=subject.id pk=practice.id %}">{% trans "Edit" %}</a></div>
