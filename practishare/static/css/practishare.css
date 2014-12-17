@@ -26,6 +26,10 @@ html {
 body {
     margin-bottom: 60px;
 }
+textarea {
+    height: 4em;
+    width: 100%;
+}
 #header {
     height: 150px;
 }
@@ -75,10 +79,16 @@ body {
     height: 3em;
     padding: 0.8em;
 }
+.practice-author {
+    position: absolute;
+}
 .practice-axis {
     border: solid 2px #356686;
     padding: .3em;
 }
 .practice-content {
     padding: 0 1em;
+}
+#comments {
+    max-width: 600px;
 }
