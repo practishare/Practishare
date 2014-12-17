@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load i18n %}
+{% load practices %}
 
 {% block pagetitle %}{% trans "Good practices" %}{% endblock %}
 {% block contenttitle %}{% trans "Good practices" %}{% endblock %}
@@ -18,10 +19,9 @@
         {% for axis1_group in axis1_list %}
         <tr>
             <th>{{axis1_group.grouper}}</th>
-            {% regroup axis1_group.list|dictsort:"axis2" by axis2 as axis2_list %}
-            {% for axis2_group in axis2_list %}
+            {% for axis2_group in axis1_group.list|groupbyaxis2:columns %}
             <td>
-                {% for practice in axis2_group.list %}
+                {% for practice in axis2_group %}
                     <a href="{% url 'practices:detail' subject_id=subject.id pk=practice.id %}" title="{{practice.title}}" alt="{{practice.title}}">
                         {{ practice.id }}
                     </a>

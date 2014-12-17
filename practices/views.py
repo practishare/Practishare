@@ -16,7 +16,7 @@ class SubjectView(generic.base.ContextMixin):
     def get_form(self, form_class):
         return form_class(Subject.objects.get(pk=self.kwargs['subject_id']), **self.get_form_kwargs())
     def get_success_url(self):
-        return reverse_lazy("practices:index", kwargs=self.kwargs)
+        return reverse_lazy("practices:index", kwargs={'subject_id': self.kwargs['subject_id']})
 
 class IndexView(SubjectView, generic.ListView):
     def get_context_data(self, **kwargs):
