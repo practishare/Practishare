@@ -1,5 +1,5 @@
 from django.contrib import admin
-from practices.models import Subject, Practice, Axis
+from practices.models import Subject, Practice, Axis, Comment
 
 class AxisInline(admin.StackedInline):
     model = Axis
@@ -10,3 +10,4 @@ class SubjectAdmin(admin.ModelAdmin):
 
 admin.site.register(Subject, SubjectAdmin)
 admin.site.register(Practice)
+admin.site.register(Comment)

@@ -28,10 +28,15 @@ class Practice(models.Model):
     updated = models.DateTimeField(auto_now=True)
     axis1 = models.CharField(max_length=50)
     axis2 = models.CharField(max_length=50)
-    field1 = models.CharField(max_length=50)
-    field2 = models.CharField(max_length=50)
-    field3 = models.CharField(max_length=50)
-    field4 = models.CharField(max_length=50)
+    field1 = models.TextField()
+    field2 = models.TextField()
+    field3 = models.TextField()
+    field4 = models.TextField()
     def __unicode__(self):
         return self.title
 
+class Comment(models.Model):
+    text = models.TextField()
+    date = models.DateTimeField(auto_now=True)
+    author = models.ForeignKey('auth.User')
+    practice = models.ForeignKey(Practice)

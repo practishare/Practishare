@@ -3,8 +3,8 @@ from django.core.urlresolvers import reverse_lazy
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, get_object_or_404
 from django.views import generic
-from practices.models import Practice, Subject
-from practices.forms import PracticeForm
+from practices.models import Practice, Subject, Comment
+from practices.forms import PracticeForm, CommentForm
 
 class SubjectView(generic.base.ContextMixin):
     model = Practice
@@ -16,7 +16,7 @@ class SubjectView(generic.base.ContextMixin):
     def get_form(self, form_class):
         return form_class(Subject.objects.get(pk=self.kwargs['subject_id']), **self.get_form_kwargs())
     def get_success_url(self):
-        return reverse_lazy("practices:index", kwargs={'subject_id':self.kwargs['subject_id']})
+        return reverse_lazy("practices:index", kwargs=self.kwargs)
 
 class IndexView(SubjectView, generic.ListView):
     def get_context_data(self, **kwargs):
@@ -28,7 +28,10 @@ class IndexView(SubjectView, generic.ListView):
         return context
 
 class DetailView(SubjectView, generic.DetailView):
-    pass
+    def get_context_data(self, **kwargs):
+        context = super(DetailView, self).get_context_data(**kwargs)
+        context['comment_form'] = CommentForm()
+        return context
 
 class UpdateView(SubjectView, generic.UpdateView):
     pass
@@ -40,3 +43,13 @@ class CreateView(SubjectView, generic.CreateView):
     
 class DeleteView(SubjectView, generic.DeleteView):
     pass
+
+class CommentView(generic.CreateView):
+    model = Comment
+    form_class = CommentForm
+    def get_success_url(self):
+        return reverse_lazy("practices:detail", kwargs=self.kwargs)
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        form.instance.practice_id = self.kwargs['pk']
+        return super(CommentView, self).form_valid(form)

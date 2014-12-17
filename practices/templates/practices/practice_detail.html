@@ -13,7 +13,7 @@
 
 <div class="center-block practice">
     <div class="bgblue white practice-header">
-        <div class="pull-left">{{ practice.author }}</div>
+        <div class="practice-author">{{ practice.author }}</div>
         <div class="text-center"><b>{{ practice.title }}</b></div>
     </div>
     <div>
@@ -41,5 +41,22 @@
         </p>
     </div>
     <div class="clearfix"></div>
+</div>
+<div id="comments" class="center-block">
+    <div class="bgblue white practice-header">
+        {% trans "Comments" %}
+    </div>
+    {% for comment in practice.comment_set.all %}
+    <div class="comment">
+        {{comment.author}} {% trans "on" %} {{comment.date}} :
+        {{comment.text}}
+    </div>
+    {% endfor %}
+    <form action="{% url 'practices:comment' subject_id=subject.id pk=practice.id %}" method="POST">
+        {% csrf_token %}
+        <label for="{{ comment_form.text.id_for_label }}">{% trans "Add a comment" %}</label>
+        {{comment_form.text}}
+        <input type="submit" value="{% trans 'Submit' %}" />
+    </form>
 </div>
 {% endblock %}

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.forms import ModelForm, ChoiceField
-from practices.models import Practice
+from practices.models import Practice, Comment
 
 class PracticeForm(ModelForm):
     def __init__(self, subject, *args, **kwargs):
@@ -13,3 +13,8 @@ class PracticeForm(ModelForm):
     class Meta:
         model = Practice
         exclude = ['author']
+
+class CommentForm(ModelForm):
+     class Meta:
+         model = Comment
+         fields = ['text']
