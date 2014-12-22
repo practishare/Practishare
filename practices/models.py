@@ -32,6 +32,7 @@ class Practice(models.Model):
     field2 = models.TextField()
     field3 = models.TextField()
     field4 = models.TextField()
+    url = models.URLField()
     def __unicode__(self):
         return self.title
 

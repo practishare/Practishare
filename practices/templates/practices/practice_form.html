@@ -14,11 +14,6 @@
         {{ form.title }}
     </div>
     <div class="fieldWrapper">
-        {{ form.subject.errors }}
-        <label for="{{ form.subject.id_for_label }}">Subject:</label>
-        {{ form.subject }}
-    </div>
-    <div class="fieldWrapper">
         {{ form.axis1.errors }}
         <label for="{{ form.axis1.id_for_label }}">{{subject.axis_set.all.0.title}}:</label>
         {{ form.axis1 }}
@@ -48,6 +43,11 @@
         {{ form.field4.errors }}
         <label for="{{ form.field4.id_for_label }}">{{subject.field4}}:</label>
         {{ form.field4 }}
+    </div>
+    <div class="fieldWrapper">
+        {{ form.url.errors }}
+        <label for="{{ form.url.id_for_label }}">{% trans "URL" %}:</label>
+        {{ form.url }}
     </div>
     <input type="submit" value="{% trans 'Submit' %}" />
 </form>

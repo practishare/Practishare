@@ -1,10 +1,19 @@
 # -*- coding: utf-8 -*-
+from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse_lazy
+from django.forms.models import model_to_dict
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, get_object_or_404
+from django.utils.decorators import method_decorator
 from django.views import generic
 from practices.models import Practice, Subject, Comment
 from practices.forms import PracticeForm, CommentForm
+
+class LoginRequiredMixin(object):
+    u"""Ensures that user must be authenticated in order to access view."""
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(LoginRequiredMixin, self).dispatch(*args, **kwargs)
 
 class SubjectView(generic.base.ContextMixin):
     model = Practice
@@ -33,21 +42,20 @@ class DetailView(SubjectView, generic.DetailView):
         context['comment_form'] = CommentForm()
         return context
 
-class UpdateView(SubjectView, generic.UpdateView):
+class UpdateView(LoginRequiredMixin, SubjectView, generic.UpdateView):
     pass
 
-class DuplicateView(generic.View):
-    def get(self, request, *args, **kwargs):
-        practice = Practice.objects.get(pk = self.kwargs['pk'])
-        practice.pk = None
-        practice.author = request.user
-        practice.save()
-        return HttpResponseRedirect(reverse_lazy("practices:detail", kwargs={'subject_id': self.kwargs['subject_id'], 'pk': practice.pk}))
-
-class CreateView(SubjectView, generic.CreateView):
+class CreateView(LoginRequiredMixin, SubjectView, generic.CreateView):
     def form_valid(self, form):
+        form.instance.subject = Subject.objects.get(pk=self.kwargs['subject_id'])
         form.instance.author = self.request.user
         return super(CreateView, self).form_valid(form)
+
+class DuplicateView(CreateView):
+    def get_initial(self):
+        practice = Practice.objects.get(pk = self.kwargs['pk'])
+        practice.pk = None
+        return model_to_dict(practice)
     
 class DeleteView(SubjectView, generic.DeleteView):
     pass

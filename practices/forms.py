@@ -12,7 +12,7 @@ class PracticeForm(ModelForm):
     
     class Meta:
         model = Practice
-        exclude = ['author']
+        exclude = ['author', 'subject']
 
 class CommentForm(ModelForm):
      class Meta:
