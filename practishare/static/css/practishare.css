@@ -1,3 +1,12 @@
+@font-face {
+    font-family: "DIN";
+    src: url("/static/fonts/DINPro-Regular.otf") format('opentype');
+}
+@font-face {
+    font-family: "DIN";
+    font-weight: bold;
+    src: url("/static/fonts/DINPro-Medium.otf") format('opentype');
+}
 .gray{
     color: #B2B2B2;
 }
@@ -20,8 +29,11 @@
     background-color: #3C3C3B;
 }
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
+}
+body {
+    font-family: "DIN", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 textarea {
     height: 4em;
@@ -42,6 +54,8 @@ textarea {
     border-top: solid 1px #356686;
     padding: .5em;
     margin-left: 150px;
+    font-weight: bold;
+    font-size: 1.1em;
 }
 #headersep {
     height: 20px;

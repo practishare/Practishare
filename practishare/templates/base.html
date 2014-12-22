@@ -14,11 +14,11 @@
                 <img id="logo" class="img-responsive" src="{% static 'logo.png' %}" />
                 <img alt="Practishare" id="sitename" class="center-block" src="{% static 'practishare.png' %}" />
             </a>
-            <div id="headermenu" class="container text-center gray">
+            <div id="headermenu" class="text-center gray">
                 <div class="col-md-4"><a href="{% url 'what_for' %}">{% trans "What for" %}</a></div>
                 <div class="col-md-4"><a href="{% url 'practices:subject_index' %}">{% trans "Subjects" %}</a></div>
                 {% if user.is_authenticated %}
-                {{user}} - <a href="{% url 'accounts:logout' %}">{% trans "Log out" %}</a>
+                <div class="col-md-4">{{user}} - <a href="{% url 'accounts:logout' %}">{% trans "Log out" %}</a></div>
                 {% else %}
                 <div class="col-md-4"><a href="{% url 'accounts:login' %}">{% trans "Log in" %}</a></div>
                 {% endif %}
