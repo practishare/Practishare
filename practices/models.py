@@ -28,11 +28,11 @@ class Practice(models.Model):
     updated = models.DateTimeField(auto_now=True)
     axis1 = models.CharField(max_length=50)
     axis2 = models.CharField(max_length=50)
-    field1 = models.TextField()
-    field2 = models.TextField()
-    field3 = models.TextField()
-    field4 = models.TextField()
-    url = models.URLField()
+    field1 = models.TextField(blank=True)
+    field2 = models.TextField(blank=True)
+    field3 = models.TextField(blank=True)
+    field4 = models.TextField(blank=True)
+    url = models.URLField(blank=True, null=True)
     def __unicode__(self):
         return self.title
 

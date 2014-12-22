@@ -28,6 +28,8 @@ class SubjectView(generic.base.ContextMixin):
         return reverse_lazy("practices:index", kwargs={'subject_id': self.kwargs['subject_id']})
 
 class IndexView(SubjectView, generic.ListView):
+    def get_queryset(self):
+        return Subject.objects.get(pk=self.kwargs['subject_id']).practice_set.all()
     def get_context_data(self, **kwargs):
         context = super(IndexView, self).get_context_data(**kwargs)
         axis = Subject.objects.get(pk=self.kwargs['subject_id']).axis_set.all()[1]
