@@ -2,7 +2,7 @@
 {% load i18n %}
 
 {% block pagetitle %}{{ practice.title }}{% endblock %}
-{% block contenttitle %}{{ subject.title }}{% endblock %}
+{% block contenttitle %}<a href="{% url 'practices:index' subject_id=subject.id %}">{{ subject.title }}</a>{% endblock %}
 {% block content %}
 <div class="pull-right">
     {% if user == practice.author %}

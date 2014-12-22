@@ -2,8 +2,8 @@
 {% load i18n %}
 {% load practices %}
 
-{% block pagetitle %}{% trans "Good practices" %}{% endblock %}
-{% block contenttitle %}{% trans "Good practices" %}{% endblock %}
+{% block pagetitle %}{{ subject.title }}{% endblock %}
+{% block contenttitle %}{{ subject.title }}{% endblock %}
 {% block content %}
 
 {% if practice_list %}
