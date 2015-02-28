@@ -9,6 +9,7 @@
     <div><a href="{% url 'practices:edit' subject_id=subject.id pk=practice.id %}">{% trans "Edit" %}</a></div>
     {% endif %}
     <div><a href="{% url 'practices:duplicate' subject_id=subject.id pk=practice.id %}">{% trans "Duplicate" %}</a></div>
+    <div><a href="mailto:?subject={{ subject.title }}&body=http://{{ request.META.HTTP_HOST }}{{ request.get_full_path }}">{% trans "Send by email" %}</a></div>
     <div>{% trans "Created on"%} {{ practice.created }}</div>
     <div>{% trans "Updated on"%} {{ practice.updated }}</div>
 </div>
