@@ -1,12 +1,22 @@
 # -*- coding: utf-8 -*-
+import uuid
 from django.db import models
 
 class Subject(models.Model):
+    id = models.CharField(primary_key=True, max_length=32)
     title = models.CharField(max_length=50)
     field1 = models.CharField(max_length=50)
     field2 = models.CharField(max_length=50)
     field3 = models.CharField(max_length=50)
     field4 = models.CharField(max_length=50)
+    public = models .BooleanField(default=True)
+    def save(self, *args, **kwargs):
+        if self.id is None:
+            self.id = uuid.uuid4().hex
+            while Subject.objects.filter(id=self.id):
+                self.id = uuid.uuid4().hex
+        super(Subject, self).save(*args, **kwargs)
+    
     def __unicode__(self):
         return self.title
 
