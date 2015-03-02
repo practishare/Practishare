@@ -11,7 +11,7 @@ class Subject(models.Model):
     field4 = models.CharField(max_length=50)
     public = models .BooleanField(default=True)
     def save(self, *args, **kwargs):
-        if self.id is None:
+        if not self.id:
             self.id = uuid.uuid4().hex
             while Subject.objects.filter(id=self.id):
                 self.id = uuid.uuid4().hex
