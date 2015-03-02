@@ -3,7 +3,7 @@ from django.views.generic import ListView
 from practices import views, models
 
 urlpatterns = patterns('',
-    url(r'^$', ListView.as_view(model = models.Subject), name='subject_index'),
+    url(r'^$', ListView.as_view(queryset = models.Subject.objects.filter(public=True)), name='subject_index'),
     url(r'^(?P<subject_id>\w+)/$', views.IndexView.as_view(), name='index'),
     url(r'^(?P<subject_id>\w+)/practice/(?P<pk>\d+)/$', views.DetailView.as_view(), name='detail'),
     url(r'^(?P<subject_id>\w+)/practice/new$', views.CreateView.as_view(), name='new'),
