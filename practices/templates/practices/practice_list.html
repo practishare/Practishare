@@ -7,7 +7,6 @@
 {% block content %}
 
 {% if practice_list %}
-{% regroup practice_list|dictsort:"axis1" by axis1 as axis1_list %}
 <div class="center-block practice">
     <table class="table table-striped">
         <tr>
@@ -16,18 +15,20 @@
             <th>{{column}}</th>
             {% endfor %}
         </tr>
-        {% for axis1_group in axis1_list %}
+        {% for row in rows %}
         <tr>
-            <th>{{axis1_group.grouper}}</th>
-            {% for axis2_group in axis1_group.list|groupbyaxis2:columns %}
-            <td>
-                {% for practice in axis2_group %}
-                    <a href="{% url 'practices:detail' subject_id=subject.id pk=practice.id %}" title="{{practice.title}}" alt="{{practice.title}}">
-                        {{ practice.id }}
-                    </a>
+            <th>{{row}}</th>
+            {% with practice_list|filterbyaxis:row as practices %}
+                {% for column in columns %}
+                    <td>
+                    {%for practice in practices|filterbyaxis:column %}
+                        <a href="{% url 'practices:detail' subject_id=subject.id pk=practice.id %}" title="{{practice.title}}" alt="{{practice.title}}">
+                            {{ practice.id }}
+                        </a>
+                    {% endfor %}
+                    </td>
                 {% endfor %}
-            </td>
-            {% endfor %}
+            {% endwith %}
         </tr>
         {% endfor %}
     </table>

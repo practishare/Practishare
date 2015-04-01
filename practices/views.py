@@ -7,7 +7,7 @@ from django.shortcuts import render, get_object_or_404
 from django.utils.decorators import method_decorator
 from django.views import generic
 from practices.models import Practice, Subject, Comment
-from practices.forms import PracticeForm, CommentForm
+from practices.forms import PracticeForm, CommentForm, getInlines
 
 ### Mixins ###
 class LoginRequiredMixin(object):
@@ -27,6 +27,9 @@ class SubjectView(generic.base.ContextMixin):
         """Adds the subject in the template context"""
         context = super(SubjectView, self).get_context_data(**kwargs)
         context['subject'] = self.subject
+        #for form view, add inline forms in the context
+        if hasattr(self, 'object'):
+            context['inlines'] = getInlines(self.subject, practice=self.object)
         return context
     def get_object(self, *args, **kwargs):
         u"""Checks that the practice is in the subject"""
@@ -34,12 +37,31 @@ class SubjectView(generic.base.ContextMixin):
         if practice.subject != self.subject:
             raise Http404
         return practice
-    def get_form(self, form_class):
-        u"""Sets the right form depending on the subject"""
-        return form_class(self.subject, **self.get_form_kwargs())
     def get_success_url(self):
         u"""Returns to the subject view after form handling"""
         return reverse_lazy("practices:index", kwargs={'subject_id': self.subject.id})
+    
+    def form_valid(self, form, axis_form, field_form):
+        """If the form is valid, save the associated models"""
+        form.instance.subject = self.subject
+        form.instance.author = self.request.user
+        self.object = form.save()
+        axis_form.instance = self.object
+        axis_form.save()
+        field_form.instance = self.object
+        field_form.save()
+        return HttpResponseRedirect(self.get_success_url())
+    
+    def post(self, request, *args, **kwargs):
+        """Handles POST requests, instantiating a form instance with the passed
+        POST variables and then checked for validity."""
+        form_class = self.get_form_class()
+        form = self.get_form(form_class)
+        [axis_form, field_form] = getInlines(self.subject, data=self.request.POST, practice=self.object)
+        if form.is_valid() and axis_form.is_valid() and field_form.is_valid():
+            return self.form_valid(form, axis_form, field_form)
+        else:
+            return self.form_invalid(form)
 
 ### Definition of the actual views ###
 class IndexView(SubjectView, generic.ListView):
@@ -48,10 +70,9 @@ class IndexView(SubjectView, generic.ListView):
         return self.subject.practice_set.all()
     def get_context_data(self, **kwargs):
         context = super(IndexView, self).get_context_data(**kwargs)
-        axis = self.subject.axis_set.all()[1]
-        columns=[axis.value1, axis.value2, axis.value3, axis.value4]
-        columns.sort()
-        context['columns'] = columns
+        axis = self.subject.axis_set.all()
+        context['rows'] = axis[0].axisvalue_set.order_by("name")
+        context['columns'] = axis[1].axisvalue_set.order_by("name")
         return context
 
 class DetailView(SubjectView, generic.DetailView):
@@ -63,14 +84,15 @@ class DetailView(SubjectView, generic.DetailView):
 
 class UpdateView(LoginRequiredMixin, SubjectView, generic.UpdateView):
     u"""Updates a practice"""
-    pass
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        return super(UpdateView, self).post(request, *args, **kwargs)
 
 class CreateView(LoginRequiredMixin, SubjectView, generic.CreateView):
     u"""Creates a new practice"""
-    def form_valid(self, form):
-        form.instance.subject = self.subject
-        form.instance.author = self.request.user
-        return super(CreateView, self).form_valid(form)
+    def post(self, request, *args, **kwargs):
+        self.object = None
+        return super(CreateView, self).post(request, *args, **kwargs)
 
 class DuplicateView(CreateView):
     u"""Creates a new practice as a copy of the given one"""

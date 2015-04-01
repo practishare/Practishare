@@ -18,6 +18,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'bootstrapform',
+    'nested_inline',
     'practices',
 )
 

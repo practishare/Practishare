@@ -1,20 +1,40 @@
 # -*- coding: utf-8 -*-
-from django.forms import ModelForm, ChoiceField
-from practices.models import Practice, Comment
+from django import forms
+from practices.models import *
+from django.forms.models import inlineformset_factory
 
-class PracticeForm(ModelForm):
-    def __init__(self, subject, *args, **kwargs):
-        super(PracticeForm, self).__init__(*args, **kwargs)
-        axis1 = subject.axis_set.all()[0]
-        axis2 = subject.axis_set.all()[1]
-        self.fields['axis1'] = ChoiceField(choices=((axis1.value1,axis1.value1), (axis1.value2,axis1.value2), (axis1.value3,axis1.value3), (axis1.value4,axis1.value4)))
-        self.fields['axis2'] = ChoiceField(choices=((axis2.value1,axis2.value1), (axis2.value2,axis2.value2), (axis2.value3,axis2.value3), (axis2.value4,axis2.value4)))
-    
+class PracticeForm(forms.ModelForm):
     class Meta:
         model = Practice
         exclude = ['author', 'subject']
 
-class CommentForm(ModelForm):
-     class Meta:
-         model = Comment
-         fields = ['text']
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ['text']
+
+class AxisForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(AxisForm, self).__init__(*args, **kwargs)
+        self.fields['axis'].widget = forms.HiddenInput()
+        if kwargs.has_key('initial'):
+            axisid = kwargs['initial']['axis']
+            self.fields['value'] = forms.ModelChoiceField(queryset=AxisValue.objects.filter(axis=axisid), label=Axis.objects.get(pk=axisid).title)
+
+class FieldForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(FieldForm, self).__init__(*args, **kwargs)
+        self.fields['field'].widget = forms.HiddenInput()
+        if kwargs.has_key('initial'):
+            fieldid = kwargs['initial']['field']
+            self.fields['value'] = forms.CharField(label=Field.objects.get(pk=fieldid).name)
+
+def getInlines(subject, data=None, practice=None):
+    """Generates formsets for the practice, depending on the subject"""
+    axis_list = map(lambda a: {'axis': a.id}, subject.axis_set.all())
+    field_list = map(lambda f: {'field': f.id}, subject.field_set.all())
+##TODO: set extra and get axis in form init for label
+    AxisFormSet = inlineformset_factory(Practice, PracticeAxisValue, can_delete=False, form=AxisForm, extra=0)#len(axis_list))
+    FieldFormSet = inlineformset_factory(Practice, PracticeFieldValue, can_delete=False, form=FieldForm, extra=0)#len(field_list))
+    
+    return [AxisFormSet(data, initial=axis_list, instance=practice), FieldFormSet(data, initial=field_list, instance=practice)]

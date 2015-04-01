@@ -20,28 +20,19 @@
         <div class="text-center"><b>{{ practice.title }}</b></div>
     </div>
     <div>
-        <div class="col-md-6 text-center practice-axis">{{ practice.axis1 }}</div>
-        <div class="col-md-6 text-center practice-axis">{{ practice.axis2 }}</div>
+        {% for axisvalue in practice.practiceaxisvalue_set.all %}
+        <div class="col-md-6 text-center practice-axis">{{ axisvalue.value }}</div>
+        {% endfor %}
     </div>
     <div class="clearfix"></div>
     
     <div class="practice-content">
+        {% for fieldvalue in practice.practicefieldvalue_set.all %}
         <p>
-            <span class="blue"> {{ practice.subject.field1 }}:</span>
-            {{ practice.field1 }}
+            <span class="blue"> {{ fieldvalue.field }}:</span>
+            {{ fieldvalue.value }}
         </p>
-        <p>
-            <span class="blue">{{ practice.subject.field2 }}:</span>
-            {{ practice.field2 }}
-        </p>
-        <p>
-            <span class="blue">{{ practice.subject.field3 }}:</span>
-            {{ practice.field3 }}
-        </p>
-        <p>
-            <span class="blue">{{ practice.subject.field4 }}:</span>
-            {{ practice.field4 }}
-        </p>
+        {% endfor %}
         <p>
             <span class="blue">{% trans "URL" %}:</span>
             <a target="_blank" href="{{ practice.url }}">{{ practice.url }}</a>

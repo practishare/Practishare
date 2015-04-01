@@ -1,57 +1,20 @@
 {% extends 'base.html' %}
 {% load i18n %}
+{% load bootstrap %}
 
 {% block pagetitle %}{% trans "New good practice" %}{% endblock %}
 {% block contenttitle %}{% trans "New good practice" %}{% endblock %}
 {% block content %}
 
-{{ form.non_field_errors }}
-<form action="" method="post">
+<form class="form-horizontal" action="" method="post">
     {% csrf_token %}
-    <div class="fieldWrapper form-group">
-        {{ form.subject.errors }}
-        <label class="col-xs-1" for="{{ form.title.id_for_label }}">Titre:</label>
-        {{ form.title }}
-    </div>
-    <div class="fieldWrapper form-group">
-        {{ form.axis1.errors }}
-        <label class="col-xs-1" for="{{ form.axis1.id_for_label }}">{{subject.axis_set.all.0.title}}:</label>
-        {{ form.axis1 }}
-    </div>
-    <div class="fieldWrapper form-group">
-        {{ form.axis2.errors }}
-        <label class="col-xs-1" for="{{ form.axis2.id_for_label }}">{{subject.axis_set.all.1.title}}:</label>
-        {{ form.axis2 }}
-    </div>
-
-    <div class="fieldWrapper form-group">
-        {{ form.field1.errors }}
-        <label for="{{ form.field1.id_for_label }}">{{subject.field1}}:</label>
-        {{ form.field1 }}
-    </div>
-    <div class="fieldWrapper form-group">
-        {{ form.field2.errors }}
-        <label for="{{ form.field2.id_for_label }}">{{subject.field2}}:</label>
-        {{ form.field2 }}
-    </div>
-    <div class="fieldWrapper form-group">
-        {{ form.field3.errors }}
-        <label for="{{ form.field3.id_for_label }}">{{subject.field3}}:</label>
-        {{ form.field3 }}
-    </div>
-    <div class="fieldWrapper form-group">
-        {{ form.field4.errors }}
-        <label for="{{ form.field4.id_for_label }}">{{subject.field4}}:</label>
-        {{ form.field4 }}
-    </div>
-    <div class="fieldWrapper form-group">
-        {{ form.url.errors }}
-        <label class="col-xs-1" for="{{ form.url.id_for_label }}">{% trans "URL" %}:</label>
-        {{ form.url }}
-    </div>
-    <div class="col-xs-1">
+    {{form|bootstrap_horizontal}}
+    {% for inlineform in inlines %}
+        {{inlineform|bootstrap_horizontal}}
+    {% endfor %}
+    <div class="btn-toolbar">
         <span class="btn btn-warning" onclick="window.history.back();return false">{% trans 'Cancel' %}</span>
+        <input class="btn btn-success" type="submit" value="{% trans 'Submit' %}" />
     </div>
-    <input class="btn btn-success" type="submit" value="{% trans 'Submit' %}" />
 </form>
 {% endblock %}

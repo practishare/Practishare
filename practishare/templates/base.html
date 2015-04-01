@@ -9,12 +9,12 @@
         <title>{% block pagetitle %}{% endblock %} - Practishare</title>
     </head>
     <body>
-        <div id="header" class="container">
+        <header class="container">
             <a href="/">
                 <img id="logo" class="img-responsive" src="{% static 'logo.png' %}" />
                 <img alt="Practishare" id="sitename" class="center-block" src="{% static 'practishare.png' %}" />
             </a>
-            <div id="headermenu" class="text-center gray">
+            <nav class="text-center gray">
                 <div class="col-md-4"><a href="{% url 'what_for' %}">{% trans "What for" %}</a></div>
                 <div class="col-md-4"><a href="{% url 'practices:subject_index' %}">{% trans "Subjects" %}</a></div>
                 {% if user.is_authenticated %}
@@ -22,8 +22,8 @@
                 {% else %}
                 <div class="col-md-4"><a href="{% url 'accounts:login' %}">{% trans "Log in" %}</a></div>
                 {% endif %}
-            </div>
-        </div>
+            </nav>
+        </header>
         <div id="headersep" class="container-fluid bgblue">
             <div class="container">
                 <div id="contenttitle" class="pull-left blue">
@@ -31,17 +31,17 @@
                 </div>
             </div>
         </div>
-        <div id="content" class="container">
+        <section class="container">
             {% block content %}
             {% endblock %}
-        </div>
-        <div class="footer bggray blue">
+        </section>
+        <footer class="bggray blue">
             <div class="container">
                 <div class="col-md-3 text-center"><a href="{% url 'who_are_we' %}">{% trans "Who are we?" %}</a></div>
                 <div class="col-md-3 text-center"><a href="{% url 'terms' %}">{% trans "Terms of use" %}</a></div>
                 <div class="col-md-3 text-center"><a href="{% url 'support' %}">{% trans "Support" %}</a></div>
                 <div class="col-md-3 text-center"><a href="http://www.google.com">{% trans "Blog" %}</a></div>
             </div>
-        </div>
+        </footer>
     </body>
 </html>
