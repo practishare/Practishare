@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-17 14:46+0100\n"
+"POT-Creation-Date: 2015-04-03 14:32+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Sylvain\n"
 "Language-Team: fr\n"
@@ -40,41 +40,62 @@ msgid "Duplicate"
 msgstr "Dupliquer"
 
 #: practices/templates/practices/practice_detail.html:12
+msgid "Send by email"
+msgstr "Envoyer par email"
+
+#: practices/templates/practices/practice_detail.html:13
 msgid "Created on"
 msgstr "Créée le"
 
-#: practices/templates/practices/practice_detail.html:13
+#: practices/templates/practices/practice_detail.html:14
 msgid "Updated on"
 msgstr "Modfiée le"
 
-#: practices/templates/practices/practice_detail.html:49
+#: practices/templates/practices/practice_detail.html:37
+msgid "URL"
+msgstr ""
+
+#: practices/templates/practices/practice_detail.html:45
 msgid "Comments"
 msgstr "Commentaires"
 
-#: practices/templates/practices/practice_detail.html:53
+#: practices/templates/practices/practice_detail.html:49
 msgid "on"
 msgstr "le"
 
-#: practices/templates/practices/practice_detail.html:59
+#: practices/templates/practices/practice_detail.html:56
 msgid "Add a comment"
 msgstr "Ajouter un commentaire"
 
-#: practices/templates/practices/practice_detail.html:61
-#: practices/templates/practices/practice_form.html:52
+#: practices/templates/practices/practice_detail.html:58
+#: practices/templates/practices/practice_form.html:16
 msgid "Submit"
 msgstr "Enregistrer"
 
-#: practices/templates/practices/practice_form.html:4
+#: practices/templates/practices/practice_detail.html:61
+msgid "Please"
+msgstr "Merci de"
+
+#: practices/templates/practices/practice_detail.html:61
+#: practishare/templates/base.html:23
+#: practishare/templates/registration/login.html:28
+msgid "Log in"
+msgstr "Se connecter"
+
+#: practices/templates/practices/practice_detail.html:61
+msgid "to comment this practice."
+msgstr "pour ajouter un commentaire à cette pratique."
+
 #: practices/templates/practices/practice_form.html:5
+#: practices/templates/practices/practice_form.html:6
 msgid "New good practice"
 msgstr "Nouvelle bonne pratique"
 
-#: practices/templates/practices/practice_list.html:4
-#: practices/templates/practices/practice_list.html:5
-msgid "Good practices"
-msgstr "Bonnes pratiques"
+#: practices/templates/practices/practice_form.html:15
+msgid "Cancel"
+msgstr "Annuler"
 
-#: practices/templates/practices/practice_list.html:38
+#: practices/templates/practices/practice_list.html:39
 msgid "Add new"
 msgstr "Ajouter une nouvelle"
 
@@ -89,27 +110,26 @@ msgstr "Sujets"
 msgid "What for"
 msgstr "Pour quoi faire"
 
-#: practishare/templates/base.html:20
-#: practishare/templates/registration/login.html:26
-msgid "Log in"
-msgstr "Se connecter"
+#: practishare/templates/base.html:21
+msgid "Log out"
+msgstr "Se déconnecter"
 
-#: practishare/templates/base.html:36 practishare/templates/who_are_we.html:4
+#: practishare/templates/base.html:40 practishare/templates/who_are_we.html:4
 #: practishare/templates/who_are_we.html:5
 #: practishare/templates/who_are_we.html:7
 msgid "Who are we?"
 msgstr "Qui sommes-nous ?"
 
-#: practishare/templates/base.html:37
+#: practishare/templates/base.html:41
 msgid "Terms of use"
 msgstr "Conditions d'utilisation"
 
-#: practishare/templates/base.html:38 practishare/templates/support.html:4
+#: practishare/templates/base.html:42 practishare/templates/support.html:4
 #: practishare/templates/support.html:5 practishare/templates/support.html:7
 msgid "Support"
 msgstr "Support"
 
-#: practishare/templates/base.html:39
+#: practishare/templates/base.html:43
 msgid "Blog"
 msgstr "Blog"
 
@@ -130,24 +150,38 @@ msgstr "Parcourir les sujets"
 msgid "Terms"
 msgstr "Conditions d'utilisation"
 
-#: practishare/templates/registration/login.html:4
+#: practishare/templates/registration/logged_out.html:4
+#: practishare/templates/registration/logged_out.html:5
 #: practishare/templates/registration/login.html:5
+#: practishare/templates/registration/login.html:6
 msgid "Login"
 msgstr "Se connecter"
 
-#: practishare/templates/registration/login.html:10
+#: practishare/templates/registration/logged_out.html:9
+msgid "Thanks for using this site."
+msgstr "Merci d'utiliser ce site."
+
+#: practishare/templates/registration/logged_out.html:10
+msgid "Log back in"
+msgstr "Se reconnecter"
+
+#: practishare/templates/registration/logged_out.html:11
+msgid "Back to the home page"
+msgstr "Retour à l'accueil"
+
+#: practishare/templates/registration/login.html:11
 msgid "Please correct the error below."
 msgstr "Merci de corriger l'erreur ci-dessous."
 
-#: practishare/templates/registration/login.html:10
+#: practishare/templates/registration/login.html:11
 msgid "Please correct the errors below."
 msgstr "Merci de corriger les erreurs ci-dessous."
 
-#: practishare/templates/registration/login.html:30
+#: practishare/templates/registration/login.html:33
 msgid "No account yet?"
 msgstr "Pas encore de compte ?"
 
-#: practishare/templates/registration/login.html:32
+#: practishare/templates/registration/login.html:35
 msgid "Register"
 msgstr "S'inscrire"
 

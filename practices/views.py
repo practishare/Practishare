@@ -101,14 +101,16 @@ class DuplicateView(CreateView):
         practice.pk = None
         return model_to_dict(practice)
     
-class DeleteView(SubjectView, generic.DeleteView):
+class DeleteView(LoginRequiredMixin, SubjectView, generic.DeleteView):
     u"""Deletes a given practice"""
     pass
 
-class CommentView(generic.CreateView):
+class CommentView(LoginRequiredMixin, generic.CreateView):
     u"""Adds a comment on a practice"""
     model = Comment
     form_class = CommentForm
+    def get(self, request, *args, **kwargs):
+        return HttpResponseRedirect(reverse_lazy("practices:detail", kwargs=kwargs))
     def get_success_url(self):
         return reverse_lazy("practices:detail", kwargs=self.kwargs)
     def form_valid(self, form):

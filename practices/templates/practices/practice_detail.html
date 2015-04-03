@@ -50,11 +50,15 @@
         {{comment.text}}
     </div>
     {% endfor %}
+    {% if user.is_authenticated %}
     <form action="{% url 'practices:comment' subject_id=subject.id pk=practice.id %}" method="POST">
         {% csrf_token %}
         <label for="{{ comment_form.text.id_for_label }}">{% trans "Add a comment" %}</label>
         {{comment_form.text}}
         <input type="submit" value="{% trans 'Submit' %}" />
     </form>
+    {% else %}
+    {% trans "Please" %} <a href="{% url 'accounts:login' %}">{% trans "Log in" %}</a> {% trans "to comment this practice." %}
+    {% endif %}
 </div>
 {% endblock %}
