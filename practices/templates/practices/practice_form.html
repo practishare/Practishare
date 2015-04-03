@@ -2,10 +2,9 @@
 {% load i18n %}
 {% load bootstrap %}
 
-{% block pagetitle %}{% trans "New good practice" %}{% endblock %}
-{% block contenttitle %}{% trans "New good practice" %}{% endblock %}
+{% block pagetitle %}{{ practice.title | default:_("New good practice") }}{% endblock %}
+{% block contenttitle %}{{ practice.title | default:_("New good practice") }}{% endblock %}
 {% block content %}
-
 <form class="form-horizontal" action="" method="post">
     {% csrf_token %}
     {{form|bootstrap_horizontal}}
