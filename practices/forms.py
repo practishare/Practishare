@@ -36,8 +36,10 @@ class FieldForm(forms.ModelForm):
 
 def getInlines(subject, data=None, practice=None):
     """Generates formsets for the practice, depending on the subject"""
-    axis_list = map(lambda a: {'axis': a.id}, subject.axis_set.exclude(practiceaxisvalue__practice=practice))
-    field_list = map(lambda f: {'field': f.id}, subject.field_set.exclude(practicefieldvalue__practice=practice))
+    # don't exclude practice if it's None, because it would exclude axis that don't have any practice yet
+    # -1 is known to be an impossible value
+    axis_list = map(lambda a: {'axis': a.id}, subject.axis_set.exclude(practiceaxisvalue__practice=practice or -1))
+    field_list = map(lambda f: {'field': f.id}, subject.field_set.exclude(practicefieldvalue__practice=practice or -1))
     axis_nb = len(map(lambda a: {'axis': a.id}, subject.axis_set.all()))
     field_nb = len(map(lambda f: {'field': f.id}, subject.field_set.all()))
     AxisFormSet = inlineformset_factory(Practice, PracticeAxisValue, can_delete=False, form=AxisForm, extra=len(axis_list), max_num=axis_nb)
