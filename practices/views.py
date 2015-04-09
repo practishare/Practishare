@@ -21,7 +21,7 @@ class SubjectView(generic.base.ContextMixin):
     model = Practice
     form_class = PracticeForm
     def dispatch(self, *args, **kwargs):
-        self.subject = Subject.objects.get(pk=self.kwargs['subject_id'])
+        self.subject = get_object_or_404(Subject, pk=self.kwargs['subject_id'])
         return super(SubjectView, self).dispatch(*args, **kwargs)
     def get_context_data(self, **kwargs):
         """Adds the subject in the template context"""
@@ -71,8 +71,8 @@ class IndexView(SubjectView, generic.ListView):
     def get_context_data(self, **kwargs):
         context = super(IndexView, self).get_context_data(**kwargs)
         axis = self.subject.axis_set.all()
-        context['rows'] = axis[0].axisvalue_set.order_by("name")
-        context['columns'] = axis[1].axisvalue_set.order_by("name")
+        context['rows'] = axis[0].axisvalue_set.all()
+        context['columns'] = axis[1].axisvalue_set.all()
         return context
 
 class DetailView(SubjectView, generic.DetailView):
