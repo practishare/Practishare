@@ -16,6 +16,9 @@ INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
+    'django.contrib.sites',
+    'registration',
+    'django.contrib.auth',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bootstrapform',
@@ -60,5 +63,9 @@ TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'practishare/templates')]
 STATICFILES_DIRS = (os.path.join(BASE_DIR, "practishare/static"),)
 LOCALE_PATHS = (os.path.join(BASE_DIR, "locale"),)
 
+# Django registration redux settings
+ACCOUNT_ACTIVATION_DAYS = 7
+REGISTRATION_AUTO_LOGIN = True
+SITE_ID = 1
 
 LOGIN_REDIRECT_URL = '/'
