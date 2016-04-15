@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
 {% load i18n %}
 {% load practices %}
 
@@ -23,7 +24,7 @@
                     <td>
                     {%for practice in practices|filterbyaxis:column %}
                         <a href="{% url 'practices:detail' subject_id=subject.id pk=practice.id %}" title="{{practice.title}}" alt="{{practice.title}}">
-                            {{ practice.id }}
+                        <img src="{% static 'icone.png' %}" class="icone" alt="icone"/>
                         </a>
                     {% endfor %}
                     </td>
