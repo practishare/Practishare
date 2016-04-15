@@ -29,7 +29,7 @@
     <div class="practice-content">
         {% for fieldvalue in practice.practicefieldvalue_set.all %}
         <p>
-            <span class="blue"> {{ fieldvalue.field }}:</span>
+            <span class="blue">{{ fieldvalue.field }}:</span>
             {{ fieldvalue.value }}
         </p>
         {% endfor %}

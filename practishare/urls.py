@@ -1,5 +1,8 @@
 from django.conf.urls import patterns, include, url
+from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib import admin
+from django.contrib.auth.forms import PasswordResetForm
 from django.views.generic import TemplateView
 from practishare import views
 
@@ -17,6 +20,11 @@ urlpatterns = patterns('',
     url(r'^support$', TemplateView.as_view(template_name="support.html"), name='support'),
     url(r'^subject/', include("practices.urls", namespace="practices")),
     url(r'^admin/', include(admin.site.urls)),
-    url('^accounts/', include('django.contrib.auth.urls', namespace="accounts")),
+    #url('^accounts/', include('django.contrib.auth.urls', namespace="accounts")),
     url('^register$', views.register, name="register"),
+    url(r'^accounts/', include('registration.backends.default.urls', namespace="accounts")),
+
+    # url(r'^activate/(?P<activation_key>\w+)/$',
+    #         ActivationView.as_view(),
+    #         name='registration_activate'),
 )

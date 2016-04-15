@@ -117,3 +117,12 @@ class CommentView(LoginRequiredMixin, generic.CreateView):
         form.instance.author = self.request.user
         form.instance.practice_id = self.kwargs['pk']
         return super(CommentView, self).form_valid(form)
+
+class SubjectCreate(generic.CreateView):
+    u"""Creation of a subject"""
+    model = Subject
+    fields = ['title']
+    def get_success_url(self):
+        return reverse_lazy("practices:index", kwargs={"subject_id":self.object.id})
+
+
