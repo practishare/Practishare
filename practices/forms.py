@@ -46,3 +46,10 @@ def getInlines(subject, data=None, practice=None):
     FieldFormSet = inlineformset_factory(Practice, PracticeFieldValue, can_delete=False, form=FieldForm, extra=len(field_list), max_num=field_nb)
     
     return [AxisFormSet(data, initial=axis_list, instance=practice), FieldFormSet(data, initial=field_list, instance=practice)]
+
+def getSubjectInlines(data=None, subject=None):
+    """Generates subjects"""
+    AxisFormSet = inlineformset_factory(Subject, Axis)
+    FieldFormSet = inlineformset_factory(Subject, Field)
+    
+    return [AxisFormSet(data, instance=subject), FieldFormSet(data, instance=subject)]

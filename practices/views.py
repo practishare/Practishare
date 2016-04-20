@@ -7,7 +7,7 @@ from django.shortcuts import render, get_object_or_404
 from django.utils.decorators import method_decorator
 from django.views import generic
 from practices.models import Practice, Subject, Comment
-from practices.forms import PracticeForm, CommentForm, getInlines
+from practices.forms import PracticeForm, CommentForm, getInlines, getSubjectInlines
 
 ### Mixins ###
 class LoginRequiredMixin(object):
@@ -46,9 +46,7 @@ class SubjectView(generic.base.ContextMixin):
         form.instance.subject = self.subject
         form.instance.author = self.request.user
         self.object = form.save()
-        axis_form.instance = self.object
         axis_form.save()
-        field_form.instance = self.object
         field_form.save()
         return HttpResponseRedirect(self.get_success_url())
     
@@ -125,4 +123,23 @@ class SubjectCreate(generic.CreateView):
     def get_success_url(self):
         return reverse_lazy("practices:index", kwargs={"subject_id":self.object.id})
 
+    def get_context_data(self, **kwargs):
+        """Adds the subject in the template context"""
+        context = super(SubjectCreate, self).get_context_data(**kwargs)
+        context['inlines'] = getSubjectInlines()
+        return context
 
+class SubjectUpdate(generic.UpdateView):
+    u"""Update a subject"""
+    model = Subject
+    def get_success_url(self):
+        return reverse_lazy("practices:index", kwargs={"subject_id":self.object.id})
+
+    def get_context_data(self, **kwargs):
+        """Adds the subject in the template context"""
+        context = super(SubjectUpdate, self).get_context_data(**kwargs)
+        context['subject'] = self.subject
+        #for form view, add inline forms in the context
+        if hasattr(self, 'object'):
+            context['inlines'] = getInlines(self.subject, practice=self.object)
+        return context
