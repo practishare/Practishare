@@ -24,6 +24,7 @@ INSTALLED_APPS = (
     'bootstrapform',
     'nested_inline',
     'practices',
+    'south',
 )
 
 MIDDLEWARE_CLASSES = (

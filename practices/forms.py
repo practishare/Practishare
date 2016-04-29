@@ -49,7 +49,15 @@ def getInlines(subject, data=None, practice=None):
 
 def getSubjectInlines(data=None, subject=None):
     """Generates subjects"""
-    AxisFormSet = inlineformset_factory(Subject, Axis)
+    AxisFormSet = inlineformset_factory(Subject, Axis, can_delete=False, extra=2)
     FieldFormSet = inlineformset_factory(Subject, Field)
     
     return [AxisFormSet(data, instance=subject), FieldFormSet(data, instance=subject)]
+
+#AxisFormSet = modelformset_factory(PracticeAxisValue, can_delete=False, form=AxisForm)
+
+def getAxisValueInlines(subject, data=None):
+    """Generates formsets for axis values of the given subject"""
+    AxisValueFormSet = inlineformset_factory(Axis, AxisValue)
+    
+    return [AxisValueFormSet(data, instance=axis) for axis in subject.axis_set.all()]

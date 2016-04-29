@@ -6,6 +6,7 @@ class Subject(models.Model):
     id = models.CharField(primary_key=True, max_length=32)
     title = models.CharField(max_length=50)
     public = models .BooleanField(default=True)
+    author = models.ForeignKey('auth.User', default=1) 
     def save(self, *args, **kwargs):
         if not self.id:
             self.id = uuid.uuid4().hex

@@ -7,7 +7,7 @@ from django.shortcuts import render, get_object_or_404
 from django.utils.decorators import method_decorator
 from django.views import generic
 from practices.models import Practice, Subject, Comment
-from practices.forms import PracticeForm, CommentForm, getInlines, getSubjectInlines
+from practices.forms import PracticeForm, CommentForm, getInlines, getSubjectInlines, getAxisValueInlines
 
 ### Mixins ###
 class LoginRequiredMixin(object):
@@ -119,15 +119,35 @@ class CommentView(LoginRequiredMixin, generic.CreateView):
 class SubjectCreate(generic.CreateView):
     u"""Creation of a subject"""
     model = Subject
-    fields = ['title']
+    fields = ['title', 'public']
     def get_success_url(self):
-        return reverse_lazy("practices:index", kwargs={"subject_id":self.object.id})
+        return reverse_lazy("practices:axis_edit", kwargs={"subject_id":self.object.id})
 
     def get_context_data(self, **kwargs):
         """Adds the subject in the template context"""
         context = super(SubjectCreate, self).get_context_data(**kwargs)
         context['inlines'] = getSubjectInlines()
         return context
+
+    def form_valid(self, form, axis_form, field_form):
+        """If the form is valid, save the associated models"""
+        form.instance.author = self.request.user
+        self.object = form.save()
+        axis_form.save()
+        field_form.save()
+        return HttpResponseRedirect(self.get_success_url())
+    
+    def post(self, request, *args, **kwargs):
+        """Handles POST requests, instantiating a form instance with the passed
+        POST variables and then checked for validity."""
+        self.object = None
+        form_class = self.get_form_class()
+        form = self.get_form(form_class)
+        [axis_form, field_form] = getSubjectInlines(data=self.request.POST)
+        if form.is_valid() and axis_form.is_valid() and field_form.is_valid():
+            return self.form_valid(form, axis_form, field_form)
+        else:
+            return self.form_invalid(form)
 
 class SubjectUpdate(generic.UpdateView):
     u"""Update a subject"""
@@ -141,5 +161,37 @@ class SubjectUpdate(generic.UpdateView):
         context['subject'] = self.subject
         #for form view, add inline forms in the context
         if hasattr(self, 'object'):
-            context['inlines'] = getInlines(self.subject, practice=self.object)
+            context['inlines'] = getInlines(self.subject)
         return context
+
+class EditAxis(generic.UpdateView):
+    u"""Edit a subject"""
+    model = Subject
+    def get_success_url(self):
+        return reverse_lazy("practices:index", kwargs={"subject_id":self.object.id})
+
+    def get_context_data(self, **kwargs):
+        """Adds the subject in the template context"""
+        context = super(SubjectCreate, self).get_context_data(**kwargs)
+        context['inlines'] = getAxisValueInlines(self.object)
+        return context
+
+    def form_valid(self, form, axis_form1, axis_form2):
+        """If the form is valid, save the associated models"""
+        form.instance.author = self.request.user
+        self.object = form.save()
+        axis_form1.save()
+        axis_form2.save()
+        return HttpResponseRedirect(self.get_success_url())
+    
+    def post(self, request, *args, **kwargs):
+        """Handles POST requests, instantiating a form instance with the passed
+        POST variables and then checked for validity."""
+        self.object = self.get_object()
+        form_class = self.get_form_class()
+        form = self.get_form(form_class)
+        [axis_form1, axis_form2] = getAxisValueInlines(self.object, data=self.request.POST)
+        if form.is_valid() and axis_form1.is_valid() and axis_form2.is_valid():
+            return self.form_valid(form, axis_form1, axis_form2)
+        else:
+            return self.form_invalid(form)

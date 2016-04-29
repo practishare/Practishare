@@ -9,6 +9,7 @@
     {% csrf_token %}
     {{form|bootstrap_horizontal}}
     {% for inlineform in inlines %}
+    hello
         {{inlineform|bootstrap_horizontal}}
     {% endfor %}
     <div class="btn-toolbar">
