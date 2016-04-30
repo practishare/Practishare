@@ -16,18 +16,23 @@ class LoginRequiredMixin(object):
     def dispatch(self, *args, **kwargs):
         return super(LoginRequiredMixin, self).dispatch(*args, **kwargs)
 
-class MultpipleFormMixin(object):
+class MultipleFormMixin(object):
     """Adds multiple forms and formsets capability to a FormView"""
     def get_context_data(self, **kwargs):
         #for form views, add inline forms in the context
         if hasattr(self, 'object'):
             kwargs['forms'] = self.get_forms()
-        return super(MultpipleFormMixin, self).get_context_data(**kwargs)
+        return super(MultipleFormMixin, self).get_context_data(**kwargs)
         
     def form_valid(self, forms):
         """If the form is valid, save the associated models"""
-        self.objects = [form.save() for form in forms]
-        self.object = self.objects[0]
+        for form in forms:
+            if self.object:
+                if not form.instance.pk:
+                    form.instance = self.object
+                form.save()
+            else:
+                self.object = form.save()
         return HttpResponseRedirect(self.get_success_url())
     
     def get_forms(self, extra_forms=[]):
@@ -104,13 +109,13 @@ class DetailView(SubjectMixin, generic.DetailView):
         context['comment_form'] = CommentForm()
         return context
 
-class UpdateView(LoginRequiredMixin, SubjectMixin, MultpipleFormMixin, generic.UpdateView):
+class UpdateView(LoginRequiredMixin, SubjectMixin, MultipleFormMixin, generic.UpdateView):
     u"""Updates a practice"""
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()
         return super(UpdateView, self).post(request, *args, **kwargs)
 
-class CreateView(LoginRequiredMixin,SubjectMixin, MultpipleFormMixin, generic.CreateView):
+class CreateView(LoginRequiredMixin,SubjectMixin, MultipleFormMixin, generic.CreateView):
     u"""Creates a new practice"""
     def post(self, request, *args, **kwargs):
         self.object = None
@@ -140,12 +145,12 @@ class CommentView(LoginRequiredMixin, generic.CreateView):
         form.instance.practice_id = self.kwargs['pk']
         return super(CommentView, self).form_valid(form)
 
-class BaseSubjectEdit(LoginRequiredMixin, MultpipleFormMixin, generic.CreateView):
+class BaseSubjectEdit(LoginRequiredMixin, MultipleFormMixin, generic.CreateView):
     u"""Base for edition of a subject"""
     model = Subject
     fields = ['title', 'public']
     def get_success_url(self):
-        return reverse_lazy("practices:axis_edit", kwargs={"subject_id":self.object.id})
+        return reverse_lazy("practices:axis_edit", kwargs={"pk":self.object.id})
     
     def form_valid(self, forms):
         """If the form is valid, save the associated models"""
@@ -156,7 +161,8 @@ class BaseSubjectEdit(LoginRequiredMixin, MultpipleFormMixin, generic.CreateView
         AxisFormSet = inlineformset_factory(Subject, Axis, can_delete=False, extra=2)
         FieldFormSet = inlineformset_factory(Subject, Field)
         data = self.request.POST or None
-        forms = [AxisFormSet(data, instance=self.object), FieldFormSet(data, instance=self.object)] + extra_forms
+        forms = [AxisFormSet(data, instance=self.object),
+            FieldFormSet(data, instance=self.object)] + extra_forms
         return super(BaseSubjectEdit, self).get_forms(forms)
 
 class SubjectCreate(BaseSubjectEdit):
@@ -165,18 +171,19 @@ class SubjectCreate(BaseSubjectEdit):
         self.object = None
         return super(SubjectCreate, self).post(request, *args, **kwargs)
 
-class EditAxis(LoginRequiredMixin, MultpipleFormMixin, generic.UpdateView):
+class EditAxis(LoginRequiredMixin, MultipleFormMixin, generic.UpdateView):
     u"""Edit a subject"""
     model = Subject
+    fields = []
     def get_success_url(self):
         return reverse_lazy("practices:index", kwargs={"subject_id":self.object.id})
     
     def get_forms(self, extra_forms=[]):
         AxisValueFormSet = inlineformset_factory(Axis, AxisValue)
         data = self.request.POST or None
-        forms = [AxisValueFormSet(data, instance=axis) for axis in self.object.axis_set.all()] + extra_forms
+        forms = [AxisValueFormSet(data, instance=axis, prefix="axis%s"%axis.id) for axis in self.object.axis_set.all()] + extra_forms
         return super(EditAxis, self).get_forms(forms)
     
     def post(self, request, *args, **kwargs):
-        self.object = None
+        self.object = self.get_object()
         return super(EditAxis, self).post(request, *args, **kwargs)
