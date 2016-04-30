@@ -7,9 +7,8 @@
 {% block content %}
 <form class="form-horizontal" action="" method="post">
     {% csrf_token %}
-    {{form|bootstrap_horizontal}}
-    {% for inlineform in inlines %}
-        {{inlineform|bootstrap_horizontal}}
+    {% for form in forms %}
+        {{form|bootstrap_horizontal}}
     {% endfor %}
     <div class="btn-toolbar">
         <span class="btn btn-warning" onclick="window.history.back();return false">{% trans 'Cancel' %}</span>

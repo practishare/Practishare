@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from django import forms
 from practices.models import *
-from django.forms.models import inlineformset_factory
 
 class PracticeForm(forms.ModelForm):
     class Meta:
@@ -33,31 +32,3 @@ class FieldForm(forms.ModelForm):
         elif kwargs.has_key('instance'):
             fieldid = kwargs['instance'].field.id
         self.fields['value'] = forms.CharField(label=Field.objects.get(pk=fieldid).name)
-
-def getInlines(subject, data=None, practice=None):
-    """Generates formsets for the practice, depending on the subject"""
-    # don't exclude practice if it's None, because it would exclude axis that don't have any practice yet
-    # -1 is known to be an impossible value
-    axis_list = map(lambda a: {'axis': a.id}, subject.axis_set.exclude(practiceaxisvalue__practice=practice or -1))
-    field_list = map(lambda f: {'field': f.id}, subject.field_set.exclude(practicefieldvalue__practice=practice or -1))
-    axis_nb = len(map(lambda a: {'axis': a.id}, subject.axis_set.all()))
-    field_nb = len(map(lambda f: {'field': f.id}, subject.field_set.all()))
-    AxisFormSet = inlineformset_factory(Practice, PracticeAxisValue, can_delete=False, form=AxisForm, extra=len(axis_list), max_num=axis_nb)
-    FieldFormSet = inlineformset_factory(Practice, PracticeFieldValue, can_delete=False, form=FieldForm, extra=len(field_list), max_num=field_nb)
-    
-    return [AxisFormSet(data, initial=axis_list, instance=practice), FieldFormSet(data, initial=field_list, instance=practice)]
-
-def getSubjectInlines(data=None, subject=None):
-    """Generates subjects"""
-    AxisFormSet = inlineformset_factory(Subject, Axis, can_delete=False, extra=2)
-    FieldFormSet = inlineformset_factory(Subject, Field)
-    
-    return [AxisFormSet(data, instance=subject), FieldFormSet(data, instance=subject)]
-
-#AxisFormSet = modelformset_factory(PracticeAxisValue, can_delete=False, form=AxisForm)
-
-def getAxisValueInlines(subject, data=None):
-    """Generates formsets for axis values of the given subject"""
-    AxisValueFormSet = inlineformset_factory(Axis, AxisValue)
-    
-    return [AxisValueFormSet(data, instance=axis) for axis in subject.axis_set.all()]
