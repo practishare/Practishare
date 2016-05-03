@@ -8,7 +8,14 @@
 <form class="form-horizontal" action="" method="post">
     {% csrf_token %}
     {% for form in forms %}
+        {% if form.prefix = 'axis_set' %}Axes
+        {% elif form.prefix = 'field_set' %}Champs
+        {% endif %}
+
+        {{form.instance.title}}
+
         {{form|bootstrap_horizontal}}
+
     {% endfor %}
     <div class="btn-toolbar">
         <span class="btn btn-warning" onclick="window.history.back();return false">{% trans 'Cancel' %}</span>
