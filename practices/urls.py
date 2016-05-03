@@ -5,6 +5,7 @@ from practices import views, models
 urlpatterns = patterns('',
     url(r'^$', ListView.as_view(queryset = models.Subject.objects.filter(public=True)), name='subject_index'),
     url(r'^new/$', views.SubjectCreate.as_view(), name="subject_create"),
+    url(r'^(?P<pk>\w+)/edit/$', views.SubjectUpdate.as_view(), name="subject_edit"),
     url(r'^(?P<pk>\w+)/axis/$', views.EditAxis.as_view(), name='axis_edit'),
     url(r'^(?P<subject_id>\w+)/$', views.IndexView.as_view(), name='index'),
     url(r'^(?P<subject_id>\w+)/practice/(?P<pk>\d+)/$', views.DetailView.as_view(), name='detail'),

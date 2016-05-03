@@ -145,7 +145,7 @@ class CommentView(LoginRequiredMixin, generic.CreateView):
         form.instance.practice_id = self.kwargs['pk']
         return super(CommentView, self).form_valid(form)
 
-class BaseSubjectEdit(LoginRequiredMixin, MultipleFormMixin, generic.CreateView):
+class BaseSubjectEdit(LoginRequiredMixin, MultipleFormMixin):
     u"""Base for edition of a subject"""
     model = Subject
     fields = ['title', 'public']
@@ -165,11 +165,17 @@ class BaseSubjectEdit(LoginRequiredMixin, MultipleFormMixin, generic.CreateView)
             FieldFormSet(data, instance=self.object)] + extra_forms
         return super(BaseSubjectEdit, self).get_forms(forms)
 
-class SubjectCreate(BaseSubjectEdit):
+class SubjectCreate(BaseSubjectEdit, generic.CreateView):
     u"""Creation of a subject"""
     def post(self, request, *args, **kwargs):
         self.object = None
         return super(SubjectCreate, self).post(request, *args, **kwargs)
+
+class SubjectUpdate(BaseSubjectEdit, generic.UpdateView):
+    u"""Modification of a subject"""
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        return super(SubjectUpdate, self).post(request, *args, **kwargs)
 
 class EditAxis(LoginRequiredMixin, MultipleFormMixin, generic.UpdateView):
     u"""Edit a subject"""
@@ -187,3 +193,4 @@ class EditAxis(LoginRequiredMixin, MultipleFormMixin, generic.UpdateView):
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()
         return super(EditAxis, self).post(request, *args, **kwargs)
+
