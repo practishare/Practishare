@@ -137,8 +137,16 @@ footer {
         margin-left: 30%;
     }
 }
-
 .icone {
     width:  25px;
     height: 30px;
+}
+.btn-action {
+    background-color: #356686;
+    color:            #ffffff;
+}
+.title-border {
+    border:        2px solid #356686;
+    border-radius: 4px; 
+    padding:       6px 12px;
 }

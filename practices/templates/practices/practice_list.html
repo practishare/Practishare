@@ -37,6 +37,6 @@
 {% else %}
     <p>No practices are available.</p>
 {% endif %}
-<a href="{% url 'practices:new' subject_id=subject.id %}">{% trans "Add new practice" %}</a><br/><br/>
-<a href="{% url 'practices:subject_edit' pk=subject.id %}">{% trans "Edit this subject" %}</a>
+<a href="{% url 'practices:new' subject_id=subject.id %}"><span class="btn btn-action">{% trans "Add new practice" %}</span></a><br/><br/>
+<a href="{% url 'practices:subject_edit' pk=subject.id %}"><span class="btn btn-action">{% trans "Edit this subject" %}</span></a>
 {% endblock %}

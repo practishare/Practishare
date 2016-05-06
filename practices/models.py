@@ -4,9 +4,9 @@ from django.db import models
 
 class Subject(models.Model):
     id = models.CharField(primary_key=True, max_length=32)
-    title = models.CharField(max_length=50)
+    title = models.CharField(max_length=50, verbose_name=u"Titre")
     public = models .BooleanField(default=True)
-    author = models.ForeignKey('auth.User', default=1) 
+    author = models.ForeignKey('auth.User', default=1, verbose_name=u"Auteur") 
     def save(self, *args, **kwargs):
         if not self.id:
             self.id = uuid.uuid4().hex
@@ -18,29 +18,29 @@ class Subject(models.Model):
         return self.title
 
 class Field(models.Model):
-    subject = models.ForeignKey('Subject')
-    name = models.CharField(max_length=50)
+    subject = models.ForeignKey('Subject', verbose_name=u"Sujet")
+    name = models.CharField(max_length=50, verbose_name=u"Nom")
     def __unicode__(self):
         return self.name
 
 class Axis(models.Model):
-    subject = models.ForeignKey('Subject')
-    title = models.CharField(max_length=50)
+    subject = models.ForeignKey('Subject', verbose_name=u"Titre")
+    title = models.CharField(max_length=50, verbose_name=u"Valeur")
     def __unicode__(self):
         return self.title
 
 class AxisValue(models.Model):
-    axis = models.ForeignKey('Axis')
-    name = models.CharField(max_length=50)
+    axis = models.ForeignKey('Axis', verbose_name=u"Axes")
+    name = models.CharField(max_length=50, verbose_name=u"Valeur")
     def __unicode__(self):
         return self.name
 
 class Practice(models.Model):
-    subject = models.ForeignKey(Subject)
-    title = models.CharField(max_length=50)
-    author = models.ForeignKey('auth.User')
-    created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
+    subject = models.ForeignKey(Subject, verbose_name=u"Sujet")
+    title = models.CharField(max_length=50, verbose_name=u"Titre")
+    author = models.ForeignKey('auth.User', verbose_name=u"Auteur")
+    created = models.DateTimeField(auto_now_add=True, verbose_name=u"Crée")
+    updated = models.DateTimeField(auto_now=True, verbose_name=u"Mis à jour")
     url = models.URLField(blank=True, null=True)
     def __unicode__(self):
         return self.title

@@ -8,18 +8,18 @@
 <form class="form-horizontal" action="" method="post">
     {% csrf_token %}
     {% for form in forms %}
-        {% if form.prefix = 'axis_set' %}Axes
-        {% elif form.prefix = 'field_set' %}Champs
+        {% if form.prefix = 'axis_set' %}<h2 class="title-border">Axes</h2>
+        {% elif form.prefix = 'field_set' %}<h2 class="title-border">Champs</h2>
         {% endif %}
 
-        {{form.instance.title}}
+        <!--{{form.instance.title}}-->
 
         {{form|bootstrap_horizontal}}
 
     {% endfor %}
     <div class="btn-toolbar">
-        <span class="btn btn-warning" onclick="window.history.back();return false">{% trans 'Cancel' %}</span>
-        <input class="btn btn-success" type="submit" value="{% trans 'Submit' %}" />
+        <span class="btn btn-action" onclick="window.history.back();return false">{% trans 'Cancel' %}</span>
+        <input type="submit" value="{% trans 'Submit' %}" class="btn btn-action"/>
     </div>
 </form>
 {% endblock %}
