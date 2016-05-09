@@ -150,3 +150,7 @@ footer {
     border-radius: 4px; 
     padding:       6px 12px;
 }
+.add-btn {
+    margin-left: 10%;
+    margin-bottom: 7px;
+}

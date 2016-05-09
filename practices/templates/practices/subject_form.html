@@ -3,20 +3,48 @@
 {% load bootstrap %}
 
 {% block pagetitle %}{{ subject.title | default:_("New subject") }}{% endblock %}
+
 {% block contenttitle %}{{ subject.title | default:_("New subject") }}{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript">
+    function addForm(newFormDiv, targetDiv) { 
+        var formIdx = targetDiv.querySelector('[id$=TOTAL_FORMS]').value;
+        var newForm = document.createElement('div');
+        newForm.innerHTML = newFormDiv.innerHTML.replace(/__prefix__/g, formIdx);
+        while (newForm.firstChild) targetDiv.appendChild(newForm.firstChild);
+        targetDiv.querySelector('[id$=TOTAL_FORMS]').value = parseInt(formIdx) + 1;
+    }
+</script>
+{% endblock %}
+
 {% block content %}
 <form class="form-horizontal" action="" method="post">
     {% csrf_token %}
     {% for form in forms %}
+
         {% if form.prefix = 'axis_set' %}<h2 class="title-border">Axes</h2>
+
         {% elif form.prefix = 'field_set' %}<h2 class="title-border">Champs</h2>
+
+        {% elif form.prefix|slice:':4' = 'axis' %}
+
+        <h2 class="title-border"> {{ form.instance.title}} </h2>
+
+        {% endif %}
+        <div>
+            {{form|bootstrap_horizontal}}
+        </div>
+        {% if form.max_num > 2 %}
+        <button type='button' onclick="addForm(this.nextElementSibling, this.previousElementSibling)" class="btn-action add-btn">Ajouter</button>
+        <div style="display:none">
+            <div class="clearfix"></div>
+            {{ form.empty_form|bootstrap_horizontal }}
+        </div>
         {% endif %}
 
-        <!--{{form.instance.title}}-->
-
-        {{form|bootstrap_horizontal}}
-
     {% endfor %}
+
     <div class="btn-toolbar">
         <span class="btn btn-action" onclick="window.history.back();return false">{% trans 'Cancel' %}</span>
         <input type="submit" value="{% trans 'Submit' %}" class="btn btn-action"/>
