@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.contrib.auth.decorators import login_required
+from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse_lazy
 from django.forms.models import model_to_dict, inlineformset_factory
 from django.http import HttpResponseRedirect, HttpResponse, Http404
@@ -158,8 +159,8 @@ class BaseSubjectEdit(LoginRequiredMixin, MultipleFormMixin):
         return super(BaseSubjectEdit, self).form_valid(forms)
     
     def get_forms(self, extra_forms=[]):
-        AxisFormSet = inlineformset_factory(Subject, Axis, can_delete=False, extra=2)
-        FieldFormSet = inlineformset_factory(Subject, Field)
+        AxisFormSet = inlineformset_factory(Subject, Axis, can_delete=False, extra=2, max_num=2)
+        FieldFormSet = inlineformset_factory(Subject, Field, extra=1)
         data = self.request.POST or None
         forms = [AxisFormSet(data, instance=self.object),
             FieldFormSet(data, instance=self.object)] + extra_forms
@@ -176,6 +177,11 @@ class SubjectUpdate(BaseSubjectEdit, generic.UpdateView):
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()
         return super(SubjectUpdate, self).post(request, *args, **kwargs)
+    def get_object(self, queryset = None):
+        subject = super(SubjectUpdate, self).get_object(queryset)
+        if subject.author != self.request.user:
+            raise PermissionDenied
+        return subject
 
 class EditAxis(LoginRequiredMixin, MultipleFormMixin, generic.UpdateView):
     u"""Edit a subject"""
@@ -185,7 +191,7 @@ class EditAxis(LoginRequiredMixin, MultipleFormMixin, generic.UpdateView):
         return reverse_lazy("practices:index", kwargs={"subject_id":self.object.id})
     
     def get_forms(self, extra_forms=[]):
-        AxisValueFormSet = inlineformset_factory(Axis, AxisValue)
+        AxisValueFormSet = inlineformset_factory(Axis, AxisValue, extra=1)
         data = self.request.POST or None
         forms = [AxisValueFormSet(data, instance=axis, prefix="axis%s"%axis.id) for axis in self.object.axis_set.all()] + extra_forms
         return super(EditAxis, self).get_forms(forms)
@@ -194,3 +200,8 @@ class EditAxis(LoginRequiredMixin, MultipleFormMixin, generic.UpdateView):
         self.object = self.get_object()
         return super(EditAxis, self).post(request, *args, **kwargs)
 
+    def get_object(self, queryset = None):
+        subject = super(EditAxis, self).get_object(queryset)
+        if subject.author != self.request.user:
+            raise PermissionDenied
+        return subject

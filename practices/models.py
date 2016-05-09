@@ -25,7 +25,7 @@ class Field(models.Model):
 
 class Axis(models.Model):
     subject = models.ForeignKey('Subject', verbose_name=u"Titre")
-    title = models.CharField(max_length=50, verbose_name=u"Valeur")
+    title = models.CharField(max_length=50, verbose_name=u"Titre")
     def __unicode__(self):
         return self.title
 
