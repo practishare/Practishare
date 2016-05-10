@@ -38,5 +38,9 @@
     <p>No practices are available.</p>
 {% endif %}
 <a href="{% url 'practices:new' subject_id=subject.id %}"><span class="btn btn-action">{% trans "Add new practice" %}</span></a><br/><br/>
+
+{% if user == subject.author %}
 <a href="{% url 'practices:subject_edit' pk=subject.id %}"><span class="btn btn-action">{% trans "Edit this subject" %}</span></a>
+{% endif %}
+
 {% endblock %}
