@@ -29,3 +29,7 @@ DEBUG = True
 
 TEMPLATE_DEBUG = True
 
+EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+EMAIL_FILE_PATH = '/tmp/fnam_messages' # change this to a proper location
+DEFAULT_FROM_EMAIL = 'webmaster@example.com'
+
