@@ -25,15 +25,15 @@
     {% csrf_token %}
     {{ form|bootstrap_horizontal }}
     <div class="submit-row">
-        <label>&nbsp;</label><input type="submit" value="{% trans 'Log in' %}" />
+        <label>&nbsp;</label><input type="submit" class="btn btn-action"value="{% trans 'Log in' %}" />
     </div>
 </form>
-<div class="clearfix"></div>
+<div class="clearfix"></div><br/>
 <p>
     {% trans "No account yet?" %}
 </p>
-<a href="{% url 'accounts:registration_register' %}">{% trans "Register" %}</a>
-<a href="#"><p>Mot de passe oublié ?</p></a>
+<a href="{% url 'accounts:registration_register' %}" class="btn btn-action">{% trans "Register" %}</a>
+<a href="#" class="btn btn-action">Mot de passe oublié ?</a>
 
 <script type="text/javascript">
 document.getElementById('id_username').focus()
