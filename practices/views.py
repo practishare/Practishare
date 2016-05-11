@@ -149,7 +149,7 @@ class CommentView(LoginRequiredMixin, generic.CreateView):
 class BaseSubjectEdit(LoginRequiredMixin, MultipleFormMixin):
     u"""Base for edition of a subject"""
     model = Subject
-    fields = ['title']
+    fields = ['title', 'public']
     def get_success_url(self):
         return reverse_lazy("practices:axis_edit", kwargs={"pk":self.object.id})
     
