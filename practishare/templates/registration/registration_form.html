@@ -1,12 +1,13 @@
 {% extends "registration/registration_base.html" %}
 {% load i18n %}
+{% load bootstrap %}
 
 {% block title %}{% trans "Register for an account" %}{% endblock %}
 
 {% block content %}
 <form method="post" action="">
     {% csrf_token %}
-    {{ form.as_p }}
+        {{ form|bootstrap }}
     <input type="submit" class="btn btn-action" value="{% trans 'Submit' %}" />
 </form>
 {% endblock %}

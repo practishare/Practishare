@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load i18n %}
+{% load bootstrap %}
 
 {% block pagetitle %}Create an account{% endblock %}
 {% block contenttitle %}Create an account{% endblock %}
@@ -7,7 +8,7 @@
 {% block content %}
     <form action="" method="post">
         {% csrf_token %}
-        {{ form.as_p }}
+        {{ form|bootstrap }}
         <input type="submit" value="{% trans 'Create the account' %}">
     </form>
 {% endblock %}
