@@ -10,3 +10,4 @@ def deploy():
         run("git merge master")
         run("./manage.py syncdb")
         run("./manage.py collectstatic")
+        run("./manage.py migrate")
