@@ -19,6 +19,27 @@
 {% endblock %}
 
 {% block content %}
+
+<h3>Introduction :</h3>
+
+<p>Ce formulaire vous permet de configurer votre practishare en deux temps, en indiquant :</p> 
+
+<ul>
+    <li>un titre, les noms des 2 axes de votre tableau ainsi que leur nombre de valeurs, le nombre de champs qui décrivent une pratique</li>
+    <li>les valeurs des axes, ainsi que des champs descriptifs</li>
+</ul>
+
+<h3>Questions :</h3>
+<ul>
+    <li>Indiquer le titre de votre practishare.</li>
+    <li>Souhaitez-vous que ce practishare soit public (référencé dans la catalogue) ?</li>
+    <li>Indiquer les titres des axes du tableau et leur nombre de valeurs</li>
+    <li>Indiquer le nombre de champs descriptifs</li>
+    <li>Indiquer les valeurs des axes (entêtes du tableau).</li>
+    <li>Indiquer les noms des champs descriptifs de vos pratiques.</li>
+</ul>
+<h2 class="title-border">Titre</h2>
+
 <form class="form-horizontal" action="" method="post">
     {% csrf_token %}
     {% for form in forms %}
