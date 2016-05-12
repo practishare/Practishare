@@ -5,7 +5,7 @@
 {% block contenttitle %}<a href="{% url 'practices:index' subject_id=subject.id %}">{{ subject.title }}</a>{% endblock %}
 {% block content %}
 <div class="pull-right">
-    {% if user == practice.author %}
+    {% if user == practice.author or user == practice.subject.user %}
     <div><a href="{% url 'practices:edit' subject_id=subject.id pk=practice.id %}">{% trans "Edit" %}</a></div>
     {% endif %}
     <div><a href="{% url 'practices:duplicate' subject_id=subject.id pk=practice.id %}">{% trans "Duplicate" %}</a></div>
@@ -58,7 +58,7 @@
         <input type="submit" value="{% trans 'Submit' %}" />
     </form>
     {% else %}
-    {% trans "Please" %} <a href="{% url 'accounts:login' %}">{% trans "Log in" %}</a> {% trans "to comment this practice." %}
+    {% trans "Please" %} <a href="{% url 'login' %}">{% trans "Log in" %}</a> {% trans "to comment this practice." %}
     {% endif %}
 </div>
 {% endblock %}
