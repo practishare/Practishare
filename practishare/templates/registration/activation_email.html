@@ -22,8 +22,8 @@
 </p>
 
 <p>
-    <a href="http://{{site.domain}}{% url 'accounts:registration_activate' activation_key %}">
-        {{site.domain}}{% url 'accounts:registration_activate' activation_key %}
+    <a href="http://{{site.domain}}{% url 'registration_activate' activation_key %}">
+        {{site.domain}}{% url 'registration_activate' activation_key %}
     </a>
 </p>
 <p>
@@ -68,9 +68,9 @@ following context:
     ``HttpRequest`` instance for better flexibility.
     For example it can be used to compute absolute register URL:
 
-        http{% if request.is_secure %}s{% endif %}://{{ request.get_host }}{% url 'accounts:registration_activate' activation_key %}
+        http{% if request.is_secure %}s{% endif %}://{{ request.get_host }}{% url 'registration_activate' activation_key %}
 
     or when using Django >= 1.7:
 
-        {{ request.scheme }}://{{ request.get_host }}{% url 'accounts:registration_activate' activation_key %}
+        {{ request.scheme }}://{{ request.get_host }}{% url 'registration_activate' activation_key %}
 {% endcomment %}

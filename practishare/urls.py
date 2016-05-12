@@ -20,5 +20,5 @@ urlpatterns = patterns('',
     url(r'^support$', TemplateView.as_view(template_name="support.html"), name='support'),
     url(r'^subject/', include("practices.urls", namespace="practices")),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^accounts/', include('registration.backends.default.urls', namespace="accounts")),
+    url(r'^accounts/', include('registration.backends.default.urls')),
 )

@@ -20,9 +20,9 @@
                 <div class="col-md-4"><a href="{% url 'what_for' %}">{% trans "What for" %}</a></div>
                 <div class="col-md-4"><a href="{% url 'practices:subject_index' %}">{% trans "Subjects" %}</a></div>
                 {% if user.is_authenticated %}
-                <div class="col-md-4">{{user}} - <a href="{% url 'accounts:auth_logout' %}">{% trans "Log out" %}</a></div>
+                <div class="col-md-4">{{user}} - <a href="{% url 'auth_logout' %}">{% trans "Log out" %}</a></div>
                 {% else %}
-                <div class="col-md-4"><a href="{% url 'accounts:auth_login' %}?next={{request.path}}">{% trans "Log in" %}</a></div>
+                <div class="col-md-4"><a href="{% url 'auth_login' %}?next={{request.path}}">{% trans "Log in" %}</a></div>
                 {% endif %}
             </nav>
         </header>

@@ -42,7 +42,7 @@
 <form class="form-horizontal" action="" method="post">
     {% csrf_token %}
     {% for form in forms %}
-    {% if form.prefix = 'title' %}<h2 class="title-border">Titre</h2>{% endif %}
+    {% if form.prefix = 'title' %}<h2 class="title-border">Titre du sujet</h2>{% endif %}
 
         {% if form.prefix = 'axis_set' %}<h2 class="title-border">Axes</h2>
 
