@@ -5,11 +5,13 @@
 {% block title %}{% trans "Register for an account" %}{% endblock %}
 
 {% block content %}
-<form method="post" action="">
-    {% csrf_token %}
-        {{ form|bootstrap }}
-    <input type="submit" class="btn btn-action" value="{% trans 'Submit' %}" />
-</form>
+<div id="content-main">
+    <form class="col-sm-6" action="" method="post" id="login-form">
+        {% csrf_token %}
+            {{ form|bootstrap }}
+            <input type="submit" class="btn btn-action" value="{% trans 'Submit' %}" />
+    </form>
+</div>
 {% endblock %}
 
 

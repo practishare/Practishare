@@ -38,11 +38,11 @@
     <li>Indiquer les valeurs des axes (entêtes du tableau).</li>
     <li>Indiquer les noms des champs descriptifs de vos pratiques.</li>
 </ul>
-<h2 class="title-border">Titre</h2>
 
 <form class="form-horizontal" action="" method="post">
     {% csrf_token %}
     {% for form in forms %}
+    {% if form.prefix = 'title' %}<h2 class="title-border">Titre</h2>{% endif %}
 
         {% if form.prefix = 'axis_set' %}<h2 class="title-border">Axes</h2>
 
