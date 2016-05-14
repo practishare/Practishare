@@ -58,7 +58,7 @@
         <input type="submit" value="{% trans 'Submit' %}" />
     </form>
     {% else %}
-    {% trans "Please" %} <a href="{% url 'login' %}">{% trans "Log in" %}</a> {% trans "to comment this practice." %}
+    {% trans "Please" %} <a href="{% url 'auth_login' %}">{% trans "Log in" %}</a> {% trans "to comment this practice." %}
     {% endif %}
 </div>
 {% endblock %}
