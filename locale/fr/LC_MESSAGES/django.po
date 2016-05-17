@@ -194,7 +194,7 @@ msgid ""
 "    You have asked to register an account at\n"
 "    %(site_name)s.  If this wasn't you, please ignore this email.\n"
 "    "
-msgstr ""
+msgstr "Vous avez demandé la création d'un compte sur (site_name)"
 
 #: practishare/templates/registration/activation_email.html:17
 #, python-format
@@ -204,7 +204,7 @@ msgid ""
 "next\n"
 "    %(expiration_days)s days:\n"
 "    "
-msgstr ""
+msgstr "Pour activer votre compte, cliquez sur ce lien avant (expiration_days) jours :"
 
 #: practishare/templates/registration/activation_email.html:29
 #, python-format
@@ -213,7 +213,7 @@ msgid ""
 "    Good practice sharing,\n"
 "    %(site_name)s Management\n"
 "    "
-msgstr ""
+msgstr "Bon partage de pratiques !"
 
 #: practishare/templates/registration/activation_email.txt:2
 #, python-format
@@ -230,7 +230,7 @@ msgid ""
 "\n"
 "To activate this account, please click the following link within the next\n"
 "%(expiration_days)s days:\n"
-msgstr ""
+msgstr "Pour activer votre compte, cliquez sur ce lien avant (expiration_days) jours :"
 
 #: practishare/templates/registration/activation_email.txt:14
 #, python-format
@@ -238,7 +238,7 @@ msgid ""
 "\n"
 "Sincerely,\n"
 "%(site_name)s Management\n"
-msgstr ""
+msgstr "L'équipe de (site_name)"
 
 #: practishare/templates/registration/activation_email_subject.txt:1
 msgid "Account activation on"
@@ -403,8 +403,7 @@ msgstr ""
 
 #: practishare/templates/registration/password_reset_email.html:4
 #, python-format
-msgid ""
-"You're receiving this email because you requested a password reset for your "
+msgid "You're receiving this email because you requested a password reset for your "
 "user account at %(site_name)s."
 msgstr ""
 
@@ -424,7 +423,7 @@ msgstr "Merci d'utiliser ce site."
 #: practishare/templates/registration/password_reset_email.html:12
 #, python-format
 msgid "The %(site_name)s team"
-msgstr ""
+msgstr "L'équipe de (site_name)"
 
 #: practishare/templates/registration/password_reset_form.html:17
 msgid ""
