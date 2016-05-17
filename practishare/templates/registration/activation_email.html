@@ -7,17 +7,11 @@
 </head>
  
 <body>
-<p>
-    {% blocktrans with site_name=site.name %}
-    Vous avez demandé la création d'un compte sur
+<p>Bonjour,</p>
+<p>Vous avez demandé la création d'un compte sur
     {{ site_name }}.  Si vous n'êtes pas à l'origine de cette demande, merci de ne pas considérer cet e-mail.
-    {% endblocktrans %}
 </p>
-<p>
-    {% blocktrans %}
-    Pour activer votre compte, cliquez sur ce lien avant
-    {{ expiration_days }} jours:
-    {% endblocktrans %}
+<p>Pour activer votre compte, cliquez sur ce lien avant {{ expiration_days }} jours:
 </p>
 
 <p>
@@ -25,12 +19,9 @@
         {{site.domain}}{% url 'registration_activate' activation_key %}
     </a>
 </p>
-<p>
-    {% blocktrans with site_name=site.name %}
-    Bon partage de pratiques !
-    L'équipe de {{ site_name }}.
-    {% endblocktrans %}
-</p>
+<p>Bon partage de pratiques !</p>
+<br/>
+<p>L'équipe de {{ site_name }}.</p>
 </body>
 
 </html>
