@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-04-03 14:32+0200\n"
+"POT-Creation-Date: 2016-05-17 14:51+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Sylvain\n"
 "Language-Team: fr\n"
@@ -28,8 +28,12 @@ msgid "Are you sure you want to delete \"%(object)s\"?"
 msgstr "Etes-vous sûr de vouloir supprimer \"%(object)s\" ?"
 
 #: practices/templates/practices/practice_confirm_delete.html:10
-msgid "Confirm"
-msgstr "Confirmer"
+#: practices/templates/practices/practice_detail.html:58
+#: practices/templates/practices/practice_form.html:15
+#: practices/templates/practices/subject_form.html:71
+#: practishare/templates/registration/registration_form.html:12
+msgid "Submit"
+msgstr "Enregistrer"
 
 #: practices/templates/practices/practice_detail.html:9
 msgid "Edit"
@@ -67,18 +71,14 @@ msgstr "le"
 msgid "Add a comment"
 msgstr "Ajouter un commentaire"
 
-#: practices/templates/practices/practice_detail.html:58
-#: practices/templates/practices/practice_form.html:16
-msgid "Submit"
-msgstr "Enregistrer"
-
 #: practices/templates/practices/practice_detail.html:61
 msgid "Please"
 msgstr "Merci de"
 
 #: practices/templates/practices/practice_detail.html:61
-#: practishare/templates/base.html:23
+#: practishare/templates/base.html:25
 #: practishare/templates/registration/login.html:28
+#: practishare/templates/registration/password_reset_complete.html:19
 msgid "Log in"
 msgstr "Se connecter"
 
@@ -91,45 +91,57 @@ msgstr "pour ajouter un commentaire à cette pratique."
 msgid "New good practice"
 msgstr "Nouvelle bonne pratique"
 
-#: practices/templates/practices/practice_form.html:15
+#: practices/templates/practices/practice_form.html:14
+#: practices/templates/practices/subject_form.html:70
 msgid "Cancel"
 msgstr "Annuler"
 
-#: practices/templates/practices/practice_list.html:39
-msgid "Add new"
-msgstr "Ajouter une nouvelle"
+#: practices/templates/practices/practice_list.html:40
+msgid "Ajouter une bonne pratique"
+msgstr ""
+
+#: practices/templates/practices/practice_list.html:43
+msgid "Modifier ce sujet"
+msgstr ""
+
+#: practices/templates/practices/subject_form.html:5
+#: practices/templates/practices/subject_form.html:7
+msgid "Nouveau Sujet"
+msgstr ""
 
 #: practices/templates/practices/subject_list.html:4
 #: practices/templates/practices/subject_list.html:5
-#: practishare/templates/base.html:19
+#: practishare/templates/base.html:21
 msgid "Subjects"
 msgstr "Sujets"
 
-#: practishare/templates/base.html:18 practishare/templates/what_for.html:4
+#: practishare/templates/base.html:20 practishare/templates/what_for.html:4
 #: practishare/templates/what_for.html:5 practishare/templates/what_for.html:7
 msgid "What for"
 msgstr "Pour quoi faire"
 
-#: practishare/templates/base.html:21
+#: practishare/templates/base.html:23
+#: practishare/templates/registration/password_change_done.html:3
+#: practishare/templates/registration/password_change_form.html:4
 msgid "Log out"
 msgstr "Se déconnecter"
 
-#: practishare/templates/base.html:40 practishare/templates/who_are_we.html:4
+#: practishare/templates/base.html:42 practishare/templates/who_are_we.html:4
 #: practishare/templates/who_are_we.html:5
 #: practishare/templates/who_are_we.html:7
 msgid "Who are we?"
 msgstr "Qui sommes-nous ?"
 
-#: practishare/templates/base.html:41
+#: practishare/templates/base.html:43
 msgid "Terms of use"
 msgstr "Conditions d'utilisation"
 
-#: practishare/templates/base.html:42 practishare/templates/support.html:4
+#: practishare/templates/base.html:44 practishare/templates/support.html:4
 #: practishare/templates/support.html:5 practishare/templates/support.html:7
 msgid "Support"
 msgstr "Support"
 
-#: practishare/templates/base.html:43
+#: practishare/templates/base.html:45
 msgid "Blog"
 msgstr "Blog"
 
@@ -149,6 +161,88 @@ msgstr "Parcourir les sujets"
 #: practishare/templates/terms.html:7
 msgid "Terms"
 msgstr "Conditions d'utilisation"
+
+#: practishare/templates/registration/activate.html:4
+msgid "Activation Failure"
+msgstr ""
+
+#: practishare/templates/registration/activate.html:7
+msgid "Account activation failed."
+msgstr ""
+
+#: practishare/templates/registration/activation_complete.html:4
+msgid "Account Activated"
+msgstr ""
+
+#: practishare/templates/registration/activation_complete.html:8
+msgid "Your account is now activated."
+msgstr ""
+
+#: practishare/templates/registration/activation_complete.html:10
+msgid "You can log in."
+msgstr ""
+
+#: practishare/templates/registration/activation_email.html:6
+#, fuzzy
+msgid "registration"
+msgstr "S'inscrire"
+
+#: practishare/templates/registration/activation_email.html:11
+#, python-format
+msgid ""
+"\n"
+"    You have asked to register an account at\n"
+"    %(site_name)s.  If this wasn't you, please ignore this email.\n"
+"    "
+msgstr ""
+
+#: practishare/templates/registration/activation_email.html:17
+#, python-format
+msgid ""
+"\n"
+"    To activate this account, please click the following link within the "
+"next\n"
+"    %(expiration_days)s days:\n"
+"    "
+msgstr ""
+
+#: practishare/templates/registration/activation_email.html:29
+#, python-format
+msgid ""
+"\n"
+"    Good practice sharing,\n"
+"    %(site_name)s Management\n"
+"    "
+msgstr ""
+
+#: practishare/templates/registration/activation_email.txt:2
+#, python-format
+msgid ""
+"\n"
+"You (or someone pretending to be you) have asked to register an account at\n"
+"%(site_name)s.  If this wasn't you, please ignore this email\n"
+"and your address will be removed from our records.\n"
+msgstr ""
+
+#: practishare/templates/registration/activation_email.txt:7
+#, python-format
+msgid ""
+"\n"
+"To activate this account, please click the following link within the next\n"
+"%(expiration_days)s days:\n"
+msgstr ""
+
+#: practishare/templates/registration/activation_email.txt:14
+#, python-format
+msgid ""
+"\n"
+"Sincerely,\n"
+"%(site_name)s Management\n"
+msgstr ""
+
+#: practishare/templates/registration/activation_email_subject.txt:1
+msgid "Account activation on"
+msgstr ""
 
 #: practishare/templates/registration/logged_out.html:4
 #: practishare/templates/registration/logged_out.html:5
@@ -170,10 +264,12 @@ msgid "Back to the home page"
 msgstr "Retour à l'accueil"
 
 #: practishare/templates/registration/login.html:11
+#: practishare/templates/registration/password_change_form.html:20
 msgid "Please correct the error below."
 msgstr "Merci de corriger l'erreur ci-dessous."
 
 #: practishare/templates/registration/login.html:11
+#: practishare/templates/registration/password_change_form.html:20
 msgid "Please correct the errors below."
 msgstr "Merci de corriger les erreurs ci-dessous."
 
@@ -185,6 +281,205 @@ msgstr "Pas encore de compte ?"
 msgid "Register"
 msgstr "S'inscrire"
 
-#: practishare/templates/registration/register.html:11
+#: practishare/templates/registration/logout.html:4
+#, fuzzy
+msgid "Logged out"
+msgstr "Se déconnecter"
+
+#: practishare/templates/registration/logout.html:7
+msgid "Successfully logged out"
+msgstr ""
+
+#: practishare/templates/registration/password_change_done.html:3
+#: practishare/templates/registration/password_change_form.html:4
+msgid "Documentation"
+msgstr ""
+
+#: practishare/templates/registration/password_change_done.html:3
+#: practishare/templates/registration/password_change_form.html:4
+msgid "Change password"
+msgstr ""
+
+#: practishare/templates/registration/password_change_done.html:6
+#: practishare/templates/registration/password_change_form.html:7
+#: practishare/templates/registration/password_reset_complete.html:6
+#: practishare/templates/registration/password_reset_confirm.html:7
+#: practishare/templates/registration/password_reset_done.html:6
+#: practishare/templates/registration/password_reset_form.html:6
+msgid "Home"
+msgstr ""
+
+#: practishare/templates/registration/password_change_done.html:7
+#: practishare/templates/registration/password_change_form.html:8
+#: practishare/templates/registration/password_change_form.html:12
+#: practishare/templates/registration/password_change_form.html:24
+msgid "Password change"
+msgstr ""
+
+#: practishare/templates/registration/password_change_done.html:11
+#: practishare/templates/registration/password_change_done.html:15
+msgid "Password change successful"
+msgstr ""
+
+#: practishare/templates/registration/password_change_done.html:17
+msgid "Your password was changed."
+msgstr ""
+
+#: practishare/templates/registration/password_change_form.html:26
+msgid ""
+"Please enter your old password, for security's sake, and then enter your new "
+"password twice so we can verify you typed it in correctly."
+msgstr ""
+
+#: practishare/templates/registration/password_change_form.html:32
+msgid "Old password"
+msgstr ""
+
+#: practishare/templates/registration/password_change_form.html:37
+msgid "New password"
+msgstr ""
+
+#: practishare/templates/registration/password_change_form.html:42
+msgid "Password (again)"
+msgstr ""
+
+#: practishare/templates/registration/password_change_form.html:48
+#: practishare/templates/registration/password_reset_confirm.html:23
+msgid "Change my password"
+msgstr ""
+
+#: practishare/templates/registration/password_reset_complete.html:7
+#: practishare/templates/registration/password_reset_confirm.html:17
+#: practishare/templates/registration/password_reset_done.html:7
+#: practishare/templates/registration/password_reset_form.html:7
+#: practishare/templates/registration/password_reset_form.html:15
+msgid "Password reset"
+msgstr ""
+
+#: practishare/templates/registration/password_reset_complete.html:11
+#: practishare/templates/registration/password_reset_complete.html:15
+msgid "Password reset complete"
+msgstr ""
+
+#: practishare/templates/registration/password_reset_complete.html:17
+msgid "Your password has been set.  You may go ahead and log in now."
+msgstr ""
+
+#: practishare/templates/registration/password_reset_confirm.html:8
+msgid "Password reset confirmation"
+msgstr ""
+
+#: practishare/templates/registration/password_reset_confirm.html:19
+msgid ""
+"Please enter your new password twice so we can verify you typed it in "
+"correctly."
+msgstr ""
+
+#: practishare/templates/registration/password_reset_confirm.html:28
+msgid "Password reset unsuccessful"
+msgstr ""
+
+#: practishare/templates/registration/password_reset_confirm.html:30
+msgid ""
+"The password reset link was invalid, possibly because it has already been "
+"used.  Please request a new password reset."
+msgstr ""
+
+#: practishare/templates/registration/password_reset_done.html:15
+msgid "Password reset successful"
+msgstr ""
+
+#: practishare/templates/registration/password_reset_done.html:17
+msgid ""
+"We've emailed you instructions for setting your password. You should be "
+"receiving them shortly."
+msgstr ""
+
+#: practishare/templates/registration/password_reset_done.html:19
+msgid ""
+"If you don't receive an email, please make sure you've entered the address "
+"you registered with, and check your spam folder."
+msgstr ""
+
+#: practishare/templates/registration/password_reset_email.html:4
+#, python-format
+msgid ""
+"You're receiving this email because you requested a password reset for your "
+"user account at %(site_name)s."
+msgstr ""
+
+#: practishare/templates/registration/password_reset_email.html:5
+msgid "Please go to the following page and choose a new password:"
+msgstr ""
+
+#: practishare/templates/registration/password_reset_email.html:10
+msgid "Your username, in case you've forgotten:"
+msgstr ""
+
+#: practishare/templates/registration/password_reset_email.html:11
+#, fuzzy
+msgid "Thanks for using our site!"
+msgstr "Merci d'utiliser ce site."
+
+#: practishare/templates/registration/password_reset_email.html:12
+#, python-format
+msgid "The %(site_name)s team"
+msgstr ""
+
+#: practishare/templates/registration/password_reset_form.html:17
+msgid ""
+"Forgotten your password? Enter your email address below, and we'll email "
+"instructions for setting a new one."
+msgstr ""
+
+#: practishare/templates/registration/password_reset_form.html:20
+msgid "Email address:"
+msgstr ""
+
+#: practishare/templates/registration/password_reset_form.html:20
+msgid "Reset my password"
+msgstr ""
+
+#: practishare/templates/registration/register.html:12
 msgid "Create the account"
 msgstr "Créer le compte"
+
+#: practishare/templates/registration/registration_closed.html:4
+msgid "Registration is closed"
+msgstr ""
+
+#: practishare/templates/registration/registration_closed.html:7
+msgid "Sorry, but registration is closed at this moment. Come back later."
+msgstr ""
+
+#: practishare/templates/registration/registration_complete.html:4
+msgid "Activation email sent"
+msgstr ""
+
+#: practishare/templates/registration/registration_complete.html:7
+msgid "Please check your email to complete the registration process."
+msgstr ""
+
+#: practishare/templates/registration/registration_form.html:5
+msgid "Register for an account"
+msgstr ""
+
+#~ msgid "Confirm"
+#~ msgstr "Confirmer"
+
+#~ msgid "Add new"
+#~ msgstr "Ajouter une nouvelle"
+
+#~ msgid "You have asked to register an account at"
+#~ msgstr "Vous avez demandé la création d'un compte sur"
+
+#~ msgid "If this wasn't you, please ignore this email."
+#~ msgstr ""
+#~ "Si vous n'êtes pas à l'origine de cette demande, merci de ne pas "
+#~ "considérer cet e-mail."
+
+#~ msgid "Good practice sharing,"
+#~ msgstr "Bon partage de pratiques,"
+
+#~ msgid "Management"
+#~ msgstr "L'équipe de"
