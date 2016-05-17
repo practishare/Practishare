@@ -8,10 +8,16 @@
  
 <body>
 <p>Bonjour,</p>
-<p>Vous avez demandé la création d'un compte sur
+
+<p>
+    {% blocktrans with site_name=site.name %}
+    Vous avez demandé la création d'un compte sur
     {{ site_name }}.  Si vous n'êtes pas à l'origine de cette demande, merci de ne pas considérer cet e-mail.
+    {% endblocktrans %}
 </p>
-<p>Pour activer votre compte, cliquez sur ce lien avant {{ expiration_days }} jours:
+
+<p>Pour activer votre compte, cliquez sur ce lien avant
+    {{ expiration_days }} jours:
 </p>
 
 <p>
@@ -20,8 +26,11 @@
     </a>
 </p>
 <p>Bon partage de pratiques !</p>
-<br/>
-<p>L'équipe de {{ site_name }}.</p>
+<p>
+    {% blocktrans with site_name=site.name %}
+    L'équipe de {{ site_name }}.
+    {% endblocktrans %}
+</p>
 </body>
 
 </html>
