@@ -9,14 +9,14 @@
 <body>
 <p>
     {% blocktrans with site_name=site.name %}
-    You have asked to register an account at
-    {{ site_name }}.  If this wasn't you, please ignore this email.
+    Vous avez demandé la création d'un compte sur
+    {{ site_name }}.  Si vous n'êtes pas à l'origine de cette demande, merci de ne pas considérer cet e-mail.
     {% endblocktrans %}
 </p>
 <p>
     {% blocktrans %}
-    To activate this account, please click the following link within the next
-    {{ expiration_days }} days:
+    Pour activer votre compte, cliquez sur ce lien avant
+    {{ expiration_days }} jours:
     {% endblocktrans %}
 </p>
 
@@ -27,8 +27,8 @@
 </p>
 <p>
     {% blocktrans with site_name=site.name %}
-    Good practice sharing,
-    {{ site_name }} Management
+    Bon partage de pratiques !
+    L'équipe de {{ site_name }}.
     {% endblocktrans %}
 </p>
 </body>
