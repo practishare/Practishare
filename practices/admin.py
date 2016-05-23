@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin
 from nested_inline.admin import NestedStackedInline, NestedTabularInline, NestedModelAdmin
 from practices.models import *
 
@@ -34,3 +35,4 @@ class PracticeAdmin(NestedModelAdmin):
 admin.site.register(Subject, SubjectAdmin)
 admin.site.register(Practice, PracticeAdmin)
 admin.site.register(Comment)
+UserAdmin.list_display = ['username', 'email', 'date_joined', 'last_login']
