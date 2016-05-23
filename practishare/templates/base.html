@@ -17,7 +17,7 @@
                 <img alt="Practishare" id="sitename" class="center-block" src="{% static 'practishare.png' %}" />
             </a>
             <nav class="text-center gray">
-                <div class="col-md-4"><a href="{% url 'what_for' %}">{% trans "What for" %}</a></div>
+                <div class="col-md-4"><a href="http://www.practishare.com/pourquoi-faire">{% trans "What for" %}</a></div>
                 <div class="col-md-4"><a href="{% url 'practices:subject_index' %}">{% trans "Subjects" %}</a></div>
                 {% if user.is_authenticated %}
                 <div class="col-md-4">{{user}} - <a href="{% url 'auth_logout' %}">{% trans "Log out" %}</a></div>
@@ -39,10 +39,10 @@
         </section>
         <footer class="bggray blue">
             <div class="container">
-                <div class="col-md-3 text-center"><a href="{% url 'who_are_we' %}">{% trans "Who are we?" %}</a></div>
-                <div class="col-md-3 text-center"><a href="{% url 'terms' %}">{% trans "Terms of use" %}</a></div>
-                <div class="col-md-3 text-center"><a href="{% url 'support' %}">{% trans "Support" %}</a></div>
-                <div class="col-md-3 text-center"><a href="http://www.google.com">{% trans "Blog" %}</a></div>
+                <div class="col-md-3 text-center"><a href="http://www.practishare.com/qui-sommes-nous">{% trans "Who are we?" %}</a></div>
+                <div class="col-md-3 text-center"><a href="http://www.practishare.com/conditions">{% trans "Terms of use" %}</a></div>
+                <div class="col-md-3 text-center"><a href="http://www.practishare.com/contact">{% trans "Support" %}</a></div>
+                <div class="col-md-3 text-center"><a href="http://www.practishare.com">{% trans "Blog" %}</a></div>
             </div>
         </footer>
     </body>

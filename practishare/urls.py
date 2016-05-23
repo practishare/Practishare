@@ -14,8 +14,7 @@ urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^$', TemplateView.as_view(template_name="index.html"), name='index'),
-    url(r'^what_for$', TemplateView.as_view(template_name="what_for.html"), name='what_for'),
-    url(r'^who_are_we$', TemplateView.as_view(template_name="who_are_we.html"), name='who_are_we'),
+    
     url(r'^terms$', TemplateView.as_view(template_name="terms.html"), name='terms'),
     url(r'^support$', TemplateView.as_view(template_name="support.html"), name='support'),
     url(r'^subject/', include("practices.urls", namespace="practices")),
