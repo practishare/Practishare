@@ -354,7 +354,7 @@ msgstr ""
 #: practishare/templates/registration/password_reset_form.html:7
 #: practishare/templates/registration/password_reset_form.html:15
 msgid "Password reset"
-msgstr ""
+msgstr "Réinitialisation du mot de passe"
 
 #: practishare/templates/registration/password_reset_complete.html:11
 #: practishare/templates/registration/password_reset_complete.html:15
